@@ -59,6 +59,7 @@
 			children = (
 				11F246F9285720E600DA595B /* GuideViews */,
 				11F24706285724FB00DA595B /* EnterInfoViews */,
+				11F24709285725D600DA595B /* Components */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -117,7 +118,6 @@
 				11F24712285747AB00DA595B /* TempContentView.swift */,
 				11F247022857249700DA595B /* extentions.swift */,
 				11F24704285724C200DA595B /* StorageKeys.swift */,
-				11F24709285725D600DA595B /* Components */,
 				4D727601284CEE5800F4DCC6 /* Assets.xcassets */,
 				4D727603284CEE5800F4DCC6 /* Preview Content */,
 			);
@@ -343,6 +343,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ggwadang/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -371,6 +372,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ggwadang/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
