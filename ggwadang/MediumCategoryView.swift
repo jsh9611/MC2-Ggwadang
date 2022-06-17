@@ -15,7 +15,7 @@ struct MediumCategoryView: View {
     @Binding var small_isSelected: String
     
     // TODO: 데이터베이스로부터 대분류가 large_isSelected인 카테고리셋 불러오기
-    @State var mediumArray = ["a", "b", "c", "d", "e", "f", "g"]
+    @State var mediumArray = ["캐러멜", "활력 음료", "c", "d", "e", "f", "g"]
     var gridItemLayout = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     
     var body: some View {
