@@ -14,7 +14,9 @@ class RecordDB: Object {
     @objc dynamic var large = ""
     @objc dynamic var medium = ""
     @objc dynamic var small = ""
-    @objc dynamic var sugar = 0.0
+    @objc dynamic var calculatedSugar: Double = 0.0
+    @objc dynamic var foodAmount: Double = 0.0
+    @objc dynamic var unit = ""
     
     override static func primaryKey() -> String? {
         "id"
