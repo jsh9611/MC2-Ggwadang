@@ -15,7 +15,7 @@ struct SmallCategoryView: View {
     @Binding var small_isSelected: String
     
     //  TODO: 데이터베이스에서 대분류가 large_isSelected이고 중분류가 medium_isSelected인 카테고리셋 불러오기
-    @State var smallArray = ["가", "나", "다", "라", "마", "바", "사", "아", "자", "차"]
+    @State var smallArray = ["솔티드", "생강, 생강, 생강, 생강", "다", "라", "마", "바", "사", "아", "자", "차"]
 
     var body: some View {
         List(0..<smallArray.count) { num in

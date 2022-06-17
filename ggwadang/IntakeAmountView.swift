@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct IntakeAmountView: View {
+    @FocusState private var isFocused: Bool
+    
     @EnvironmentObject var store: RecordStore
     @Binding var isPresented: Bool
     @State var Today = Date.now
@@ -15,73 +17,201 @@ struct IntakeAmountView: View {
     @Binding var medium_isSelected: String
     @Binding var small_isSelected: String
     
-    let servingCount = ["1/3", "1/2", "1", "2", "3"]
-    @State var isSelected = [false, false, false, false, false]
+    let servingCategory = ["1/3컵", "1/2컵", "1컵", "2컵", "3컵", "직접입력"]
+    let categoryRate : [Double] = [0.333, 0.5, 1, 2, 3, -1] // 계산하기 쉽도록 테이블 작성
+    @State var isSelected = [false, false, false, false, false, false]
+    @State private var showingAlert = false // 0 g/ml 입력하면 뜨게 하는 용도
+    
+    //    @State var isSelected = [false, false, false, false, false]
     @State var directTyping = false
     
-    @State var intake = 0.0
-    // TODO: 데이터베이스로부터 제품 1g당 당류 불러오기 (=sugarAmount)
-    var sugarAmount = 0.1
+    @State var intake : Double = 0 // serving: 섭취량 -> 섭취량도 저장해야하는지
+    @State var buttonState : Int = 0    // 현재 선택한 카테고리명
+    
     // TODO: 카테고리별로 단위, 1회제공량 정의해야함 (제품당 단위 ex. 음료1캔=190ml)
-    var servingSize = 190.0
+    @State var foodAmount: String = "200"
+    var servingSize = 190.0 // foodAmount로 적용해야함
+    
+    // TODO: 데이터베이스로부터 제품 1g당 당류 불러오기 (=sugarAmount)
+    var sugarAmount = 0.47
     
     var gridItemLayout = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
-
+    
+    // TextField에 숫자를 표시하려면 NumberFormatter 를 사용해야 합니다
+    let formatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        return formatter
+    }()
+    
     var body: some View {
         VStack{
-            LazyVGrid(columns: gridItemLayout, spacing: 10) {
-                ForEach((0..<servingCount.count), id: \.self) { num in
-                    Button {
-                        for temp in 0..<servingCount.count {
-                            self.isSelected[temp] = false
-                            directTyping = false
+            ZStack {
+                // 위에 배경부분
+                LinearGradient(gradient: Gradient(colors: [Color(hex: 0x80BBB7), Color(hex: 0x80BF88)]),
+                               startPoint: .top, endPoint: .center)
+                .edgesIgnoringSafeArea(.all)
+                
+                HStack {
+                    VStack {
+                        VStack {
+                            HStack {
+                                Text("\(medium_isSelected) < \(small_isSelected)") // 최대 11글자
+                                    .font(.title2)
+                                    .fontWeight(.bold)
+                                    .lineLimit(1)
+                                Spacer()
+                            }
+                            
+                            
+                            HStack {
+                                VStack (alignment: .leading){
+                                    Text("당류 \(String(format: "%.1f", intake*sugarAmount))g")
+                                        .font(.title3)
+                                        .fontWeight(.bold)
+                                    HStack {
+                                        ZStack {
+                                            RoundedRectangle(cornerRadius: 15)
+                                                .fill(Color.white)
+                                                .opacity(0.1)
+                                                .shadow(color: .black.opacity(0.2), radius: 10, x: 10, y: 10)
+                                                .shadow(color: .white.opacity(0.7), radius: 10, x: -5, y: -5)
+                                            
+                                            HStack {
+                                                
+                                                TextField("200",
+                                                          value: $intake,
+                                                          formatter: formatter)
+                                                .frame(height: 60)
+                                                .padding(.leading, 10)
+                                                .focused($isFocused)    // 텍스트필드를 바라보도록 활성화
+                                                .keyboardType(.numberPad)
+                                                .font(.title2)
+                                                
+                                                Text("ml")
+                                                    .font(.title2)
+                                                    .fontWeight(.bold)
+                                                    .padding(.trailing, 5)
+                                                Spacer()
+                                            }
+                                            
+                                        }.frame(width: 110, height: 60)
+                                        
+                                    }
+                                    
+                                    
+                                }
+                                
+                                Spacer()
+                                Text("🍪")
+                                    .modifier(FittingFontSizeModifier()) // .resizable()처럼 사용하기 위해 추가함
+                                    .frame(width: 100, height: 100)
+                                    .padding(.trailing, 20)
+                            }
+                            
                         }
-                        self.isSelected[num].toggle()
-                        intake = (servingCount[num] as NSString).doubleValue * servingSize
-                    } label: {
-                        Text("\(servingCount[num])컵")
-                            .padding()
-                            .foregroundColor(self.isSelected[num] ?Color.white : Color.black)
+                        .foregroundColor(.white)
+                        .padding(.horizontal, 20)
+                        
+                        
                     }
-                    .frame(width: 100, height: 70)
-                    .background(RoundedRectangle(cornerRadius: 15)
-                        .fill(self.isSelected[num] ? Color.accentColor : Color.white)
-                        .shadow(color: Color.black.opacity(0.1), radius: 5, y: 3))
                 }
-                Button {
-                    directTyping.toggle()
-                    for temp in 0..<servingCount.count {
-                        self.isSelected[temp] = false
-                    }
-                } label: {Text("직접 입력").foregroundColor(self.directTyping ?Color.white : Color.black)}
-                    .frame(width: 100, height: 70)
-                    .background(RoundedRectangle(cornerRadius: 15)
-                        .fill(self.directTyping ? Color.accentColor : Color.white)
-                        .shadow(color: Color.black.opacity(0.1), radius: 5, y: 3))
             }
-            .padding(.top, 5)
-            .padding([.leading, .trailing], 20)
-            if(directTyping) {
-                TextField("섭취량(g/ml)을 입력하세요.", value: $intake, format: .number)
-                    .keyboardType(.numberPad)
-                    .textFieldStyle(.roundedBorder)
-                    .padding(20)
+            .frame(height: 250) // 스캐치 기준 300이라 일단 이렇게함
+            
+            LazyVGrid(columns: gridItemLayout, spacing: 10) {
+                ForEach((0 ..< servingCategory.count - 1), id: \.self) { num in
+                    // 이전에 눌렀던 버튼을 해제한 뒤 현재 num에 대한 버튼을 활성화
+                    Button {
+                        // 직접입력을 눌렀다가 다른 버튼을 누르는 경우 포커스 해제
+                        if isFocused { isFocused.toggle() }
+                        // 이전에 눌렀던 버튼을 해제
+                        self.isSelected[buttonState].toggle()
+                        // 이번에 눌렀던 버튼의 index를 저장하고 버튼 활성화
+                        buttonState = num
+                        self.isSelected[buttonState].toggle()
+                        // 각 버튼의 배수 x 개당(컵,개,덩어리) 용량 = 선택한 용량
+                        intake = Double(String(format: "%.0f", categoryRate[buttonState] * Double(foodAmount)!)) ?? 0
+                        print(intake)
+                    } label: {
+                        Text("\(servingCategory[num])")
+                            .padding()
+                            .foregroundColor(self.isSelected[num] ? Color.white : Color.black)
+                    }
+                    .frame(width: 110, height: 60)
+                    .background(RoundedRectangle(cornerRadius: 15)
+                        .fill(self.isSelected[num] ? Color(hex: 0x6CADA5) : Color.white)
+                        .shadow(color: .black.opacity(0.2), radius: 10, x: 10, y: 10)
+                        .shadow(color: .white.opacity(0.7), radius: 10, x: -5, y: -5)
+                                
+                    )
+                }
+                
+                Button {
+                    // 직접입력
+                    // 이전에 눌렀던 버튼을 해제
+                    self.isSelected[buttonState].toggle()
+                    buttonState = servingCategory.count - 1
+                    self.isSelected[buttonState].toggle()
+                    // 텍스트 필드에 대한 focus를 On
+                    isFocused = true
+                    print(intake)
+                } label: {
+                    Text("직접입력")
+                        .fontWeight(.bold)
+                        .padding()
+                        .foregroundColor(Color(hex: 0x6CADA5))
+                    
+                }
+                .frame(width: 110, height: 60)
+                .background(RoundedRectangle(cornerRadius: 15)
+                    .fill(Color.white)
+                    .shadow(color: .black.opacity(0.2), radius: 10, x: 10, y: 10)
+                    .shadow(color: .white.opacity(0.7), radius: 10, x: -5, y: -5))
+                .overlay(RoundedRectangle(cornerRadius: 15)
+                    .stroke(self.isFocused ? Color(hex: 0x6CADA5) : Color.clear, lineWidth: 2))
+                
+            }
+            .padding(.top, 10)
+            .padding(.horizontal, 10)
+            // 등장과 동시에 intake에 값을 넣어준다.(디폴트로 선택한 0번 버튼의 값이 들어감)
+            .onAppear {
+                isSelected[buttonState].toggle()
+                intake = Double(String(format: "%.0f", categoryRate[buttonState] * Double(foodAmount)!)) ?? 0
             }
             
             Spacer()
             Button {
-                saveRecord()
-                isPresented.toggle()
+                print(intake, "ml 입력받았어요")
+                print(intake*sugarAmount, "g 설탕을 저장했어요")
+                
+                if intake <= 0 || intake > 10000 {
+                    showingAlert.toggle()
+                } else {
+                    saveRecord()
+                    isPresented.toggle()
+                }
+
             } label: {
-                Text("당 \(intake*sugarAmount, specifier: "%.1f")g 추가하기")
+                Text("추가하기")
+                    .frame(width: (UIScreen.main.bounds.width)*0.9, height: 56)
                     .foregroundColor(Color.white)
             }
-            .frame(width: 350, height: 50)
-            .background(RoundedRectangle(cornerRadius: 30).fill(Color.accentColor))
+            .background(RoundedRectangle(cornerRadius: 30).fill(Color(hex: 0x6CADA5)))
+            .padding(.vertical, 20)
+            .alert("범위 초과", isPresented: $showingAlert) {
+                Button("넹~~") {
+                    print("힝")
+                    isFocused.toggle()
+                    intake = Double(foodAmount) ?? 0
+                }
+            } message: {
+                Text("0~10000 사이의 값을 입력해주세용")
+            }
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
-                Text(small_isSelected)
+//                Text(small_isSelected)
             }
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action:{
