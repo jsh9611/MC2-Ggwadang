@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D0C64C8285AFB0200FF70E6 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0C64C7285AFB0200FF70E6 /* ListView.swift */; };
+		4D0C64CC285AFBA700FF70E6 /* LargeCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0C64CB285AFBA700FF70E6 /* LargeCategoryView.swift */; };
+		4D0C64CE285AFBEB00FF70E6 /* MediumCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0C64CD285AFBEB00FF70E6 /* MediumCategoryView.swift */; };
+		4D0C64D0285AFC3400FF70E6 /* SmallCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0C64CF285AFC3400FF70E6 /* SmallCategoryView.swift */; };
+		4D0C64D2285AFC5500FF70E6 /* IntakeAmountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0C64D1285AFC5500FF70E6 /* IntakeAmountView.swift */; };
+		4D4E370A285B5E6700B777C1 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 4D4E3709285B5E6700B777C1 /* Realm */; };
+		4D4E370C285B5E6700B777C1 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4D4E370B285B5E6700B777C1 /* RealmSwift */; };
+		4D4E370F285B5E8500B777C1 /* RecordDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4E370E285B5E8500B777C1 /* RecordDB.swift */; };
+		4D4E3711285B5E8F00B777C1 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4E3710285B5E8F00B777C1 /* Record.swift */; };
 		11F246FB2857222C00DA595B /* GuideTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F246FA2857222C00DA595B /* GuideTabView.swift */; };
 		11F246FF2857234300DA595B /* GuidePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F246FE2857234300DA595B /* GuidePageView.swift */; };
 		11F247012857235700DA595B /* GuideLastPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F247002857235700DA595B /* GuideLastPageView.swift */; };
@@ -22,9 +31,17 @@
 		4D727600284CEE5800F4DCC6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7275FF284CEE5800F4DCC6 /* ContentView.swift */; };
 		4D727602284CEE5800F4DCC6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D727601284CEE5800F4DCC6 /* Assets.xcassets */; };
 		4D727605284CEE5800F4DCC6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D727604284CEE5800F4DCC6 /* Preview Assets.xcassets */; };
+		4DB1F26E285B6BAC00BA7465 /* RecordStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB1F26D285B6BAC00BA7465 /* RecordStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4D0C64C7285AFB0200FF70E6 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
+		4D0C64CB285AFBA700FF70E6 /* LargeCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeCategoryView.swift; sourceTree = "<group>"; };
+		4D0C64CD285AFBEB00FF70E6 /* MediumCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumCategoryView.swift; sourceTree = "<group>"; };
+		4D0C64CF285AFC3400FF70E6 /* SmallCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallCategoryView.swift; sourceTree = "<group>"; };
+		4D0C64D1285AFC5500FF70E6 /* IntakeAmountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntakeAmountView.swift; sourceTree = "<group>"; };
+		4D4E370E285B5E8500B777C1 /* RecordDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordDB.swift; sourceTree = "<group>"; };
+		4D4E3710285B5E8F00B777C1 /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
 		11F246FA2857222C00DA595B /* GuideTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideTabView.swift; sourceTree = "<group>"; };
 		11F246FE2857234300DA595B /* GuidePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidePageView.swift; sourceTree = "<group>"; };
 		11F247002857235700DA595B /* GuideLastPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideLastPageView.swift; sourceTree = "<group>"; };
@@ -41,6 +58,7 @@
 		4D7275FF284CEE5800F4DCC6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		4D727601284CEE5800F4DCC6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4D727604284CEE5800F4DCC6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		4DB1F26D285B6BAC00BA7465 /* RecordStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,12 +66,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D4E370C285B5E6700B777C1 /* RealmSwift in Frameworks */,
+				4D4E370A285B5E6700B777C1 /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4D4E370D285B5E7500B777C1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4D4E370E285B5E8500B777C1 /* RecordDB.swift */,
+				4D4E3710285B5E8F00B777C1 /* Record.swift */,
+			);
+			path = Models;
 		11F246F82857207600DA595B /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -112,12 +139,21 @@
 		4D7275FC284CEE5800F4DCC6 /* ggwadang */ = {
 			isa = PBXGroup;
 			children = (
-				11F246F82857207600DA595B /* Views */,
+				4D4E370D285B5E7500B777C1 /* Models */,
+				4DB1F26C285B6B9600BA7465 /* ViewModels */,
 				4D7275FD284CEE5800F4DCC6 /* ggwadangApp.swift */,
+				4D7275FF284CEE5800F4DCC6 /* ContentView.swift */,
+				4D0C64C7285AFB0200FF70E6 /* ListView.swift */,
+				4D0C64CB285AFBA700FF70E6 /* LargeCategoryView.swift */,
+				4D0C64CD285AFBEB00FF70E6 /* MediumCategoryView.swift */,
+				4D0C64CF285AFC3400FF70E6 /* SmallCategoryView.swift */,
+				4D0C64D1285AFC5500FF70E6 /* IntakeAmountView.swift */,
+				11F246F82857207600DA595B /* Views */,
 				4D7275FF284CEE5800F4DCC6 /* ContentView.swift */,
 				11F24712285747AB00DA595B /* TempContentView.swift */,
 				11F247022857249700DA595B /* extentions.swift */,
 				11F24704285724C200DA595B /* StorageKeys.swift */,
+				11F24709285725D600DA595B /* Components */,
 				4D727601284CEE5800F4DCC6 /* Assets.xcassets */,
 				4D727603284CEE5800F4DCC6 /* Preview Content */,
 			);
@@ -130,6 +166,14 @@
 				4D727604284CEE5800F4DCC6 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		4DB1F26C285B6B9600BA7465 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				4DB1F26D285B6BAC00BA7465 /* RecordStore.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,6 +192,10 @@
 			dependencies = (
 			);
 			name = ggwadang;
+			packageProductDependencies = (
+				4D4E3709285B5E6700B777C1 /* Realm */,
+				4D4E370B285B5E6700B777C1 /* RealmSwift */,
+			);
 			productName = ggwadang;
 			productReference = 4D7275FA284CEE5800F4DCC6 /* ggwadang.app */;
 			productType = "com.apple.product-type.application";
@@ -176,6 +224,9 @@
 				Base,
 			);
 			mainGroup = 4D7275F1284CEE5800F4DCC6;
+			packageReferences = (
+				4D4E3708285B5E6700B777C1 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+			);
 			productRefGroup = 4D7275FB284CEE5800F4DCC6 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -202,13 +253,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D0C64D0285AFC3400FF70E6 /* SmallCategoryView.swift in Sources */,
+				4D4E3711285B5E8F00B777C1 /* Record.swift in Sources */,
 				11F2470B285725FB00DA595B /* TextFieldBox.swift in Sources */,
 				11F247032857249700DA595B /* extentions.swift in Sources */,
 				11F2470D2857274300DA595B /* GenderSegmentedBar.swift in Sources */,
 				11F24713285747AB00DA595B /* TempContentView.swift in Sources */,
 				11F24705285724C200DA595B /* StorageKeys.swift in Sources */,
 				4D727600284CEE5800F4DCC6 /* ContentView.swift in Sources */,
+				4D0C64CE285AFBEB00FF70E6 /* MediumCategoryView.swift in Sources */,
+				4D4E370F285B5E8500B777C1 /* RecordDB.swift in Sources */,
+				4D0C64CC285AFBA700FF70E6 /* LargeCategoryView.swift in Sources */,
+				4D0C64D2285AFC5500FF70E6 /* IntakeAmountView.swift in Sources */,
 				4D7275FE284CEE5800F4DCC6 /* ggwadangApp.swift in Sources */,
+				4DB1F26E285B6BAC00BA7465 /* RecordStore.swift in Sources */,
+				4D0C64C8285AFB0200FF70E6 /* ListView.swift in Sources */,
 				11F2470F28572DC200DA595B /* NextButton.swift in Sources */,
 				11F24708285725A000DA595B /* EnterUserDataView.swift in Sources */,
 				11F247012857235700DA595B /* GuideLastPageView.swift in Sources */,
@@ -415,6 +474,32 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4D4E3708285B5E6700B777C1 /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-cocoa.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4D4E3709285B5E6700B777C1 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4D4E3708285B5E6700B777C1 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = Realm;
+		};
+		4D4E370B285B5E6700B777C1 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4D4E3708285B5E6700B777C1 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4D7275F2284CEE5800F4DCC6 /* Project object */;
+}
+
 }

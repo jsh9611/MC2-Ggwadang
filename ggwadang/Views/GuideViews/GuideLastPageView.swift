@@ -16,6 +16,7 @@ struct GuideLastPageView: View {
     
     var body: some View {
         VStack {
+<<<<<<< HEAD
             // 이미지 적용 완료
             VStack {
                 Image(imageName)
@@ -51,6 +52,34 @@ struct GuideLastPageView: View {
             .frame(height: 300)
 
             
+=======
+            Image(imageName)
+                .font(.system(size: 100))
+                .padding()
+            
+            VStack (alignment: .leading){
+                Text(title)
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .padding()
+                
+                Text(subtitle)
+                    .font(.title2)
+                    .padding()
+            }
+            
+            Button {    // 온보딩 완료 버튼
+                isFirstLaunching.toggle()
+            } label: {
+                Text("시작하기")
+                    .foregroundColor(.black)
+                    .fontWeight(.bold)
+                    .frame(width: 200, height: 50)
+                    .background(Color.white)
+                    .cornerRadius(30)
+            }
+            .padding()
+>>>>>>> 38906d5
         }
 
     }
