@@ -81,6 +81,8 @@
 				4D4E3710285B5E8F00B777C1 /* Record.swift */,
 			);
 			path = Models;
+            sourceTree = "<group>";
+        };
 		11F246F82857207600DA595B /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -498,8 +500,8 @@
 			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
-	};
-	rootObject = 4D7275F2284CEE5800F4DCC6 /* Project object */;
+    };
+    rootObject = 4D7275F2284CEE5800F4DCC6 /* Project object */;
 }
 
-}
+
