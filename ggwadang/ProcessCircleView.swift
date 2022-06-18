@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ProgressCircleView : View {
     // TODO: progress = RecordDB로부터 불러온 오늘 당섭취량 / AppStorage로부터 불러온 목표섭취량
-    @Binding var progress: Float
+    @Binding var progress: Double
     
     var body: some View {
         ZStack {
@@ -91,7 +91,7 @@ struct ProgressCircleView : View {
     }
     
     //func mainImage
-    func mainImage(number: Float) -> Image {
+    func mainImage(number: Double) -> Image {
         if progress <= 0.39 {
             return Image("꽈당이1")
         } else if progress <= 0.79 {
