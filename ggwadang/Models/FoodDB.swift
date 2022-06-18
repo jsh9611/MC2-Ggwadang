@@ -34,17 +34,16 @@ class FoodDB: Object {
     
 }
 
-
+// FoodDB가 비여있다면 CSV로 부터 데이터를 파싱해서 DB에 저장합니다
 func csvToRealm() {
     let realm = try! Realm()
- 
-    let foods = loadCSV(from: "final_food_data")
-    for food in foods {
-        let item = FoodDB(id: food.id, large: food.large, medium: food.medium, small: food.small, sugarPerGram: food.sugarPerGram, servingSize: food.servingSize, unit: food.unit)
-        try! realm.write {
-            realm.add([item])
+    if realm.objects(FoodDB.self).isEmpty {
+        let foods = loadCSV(from: "final_food_data")
+        for food in foods {
+            let item = FoodDB(id: food.id, large: food.large, medium: food.medium, small: food.small, sugarPerGram: food.sugarPerGram, servingSize: food.servingSize, unit: food.unit)
+            try! realm.write {
+                realm.add([item])
+            }
         }
     }
 }
-
-

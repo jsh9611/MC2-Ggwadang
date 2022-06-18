@@ -48,7 +48,7 @@ struct SegView: View {
                 
                     BarChart()
                         .frame(maxWidth: .infinity)
-                        .border(Color.blue)
+//                        .border(Color.blue)
                     
                 }
                 

@@ -14,7 +14,9 @@ struct ggwadangApp: SwiftUI.App {
         let realm = try! Realm()
         WindowGroup {
             //tabView()
-            ContentView().environmentObject(RecordStore(realm: realm))
+            ContentView()
+                .environmentObject(RecordStore(realm: realm))
+                .environmentObject(FoodStore(realm: realm))
         }
     }
 }

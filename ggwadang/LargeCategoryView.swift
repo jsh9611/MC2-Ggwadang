@@ -14,7 +14,7 @@ struct LargeCategoryView: View {
     @State var medium_isSelected = ""
     @State var small_isSelected = ""
     
-    let largeArray = [["베이커리","🥐"], ["과자","🍪"], ["떡, 견과류","🍡"], ["음료","🥤"], ["유가공품","🥛"], ["아이스크림","🍦"], ["초콜릿","🍫"], ["캔디, 젤리","🍭"], ["캐러멜, 양갱","🍮"]]
+    let largeArray = [["과자","🍪"], ["떡·견과류","🍡"], ["베이커리","🥐"], ["아이스크림","🍦"], ["유가공품","🥛"], ["음료","🥤"], ["초콜릿","🍫"], ["캐러멜, 양갱","🍮"], ["캔디, 젤리","🍭"]]
     var gridItemLayout = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     
     var body: some View {
@@ -23,7 +23,9 @@ struct LargeCategoryView: View {
                 dismissButton(isPresented: self.$isPresented)
                 LazyVGrid(columns: gridItemLayout, spacing: 10) {
                     ForEach((0..<largeArray.count), id: \.self) { num in
-                        NavigationLink(destination: MediumCategoryView(isPresented: self.$isPresented, large_isSelected: self.$large_isSelected, medium_isSelected: self.$medium_isSelected, small_isSelected: self.$small_isSelected).environmentObject(self.store)) {
+                        NavigationLink(destination: MediumCategoryView(isPresented: self.$isPresented, large_isSelected: self.$large_isSelected, medium_isSelected: self.$medium_isSelected, small_isSelected: self.$small_isSelected)
+//                            .environmentObject(self.store)
+                        ){
                             VStack(spacing: 10) {
                                 Text(largeArray[num][1]).font(.system(size: 40))
                                 Text(largeArray[num][0])
