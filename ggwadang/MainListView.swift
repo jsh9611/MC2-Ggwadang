@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct MainListView: View {
-    
+    // TODO: RecordDB에서 오늘 먹은 음식불러오기
+    // 아래는 더미데이터
     @State private var name: String = "오렌지주스"
     @State private var intakeVolume: String = "300ml"
     @State private var sugarVolume: String = "당류 10g"
@@ -18,9 +19,10 @@ struct MainListView: View {
             HStack {
                 Text("오늘의 당 섭취")
                 Spacer()
-                Text("전체보기")
-                    .foregroundColor(Color("MainColor"))
-                    .font(.system(size: 17, weight: .medium))
+                NavigationLink(destination: MainFullListView()) {
+                    Text("전체보기").foregroundColor(.accentColor)
+                }
+                    
             }
             ZStack {
                 RoundedRectangle(cornerRadius: 15)
@@ -61,14 +63,13 @@ struct MainListView: View {
                 }
             }
         }
-    .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
+    .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
     }
-
+}
 
 struct MainListView_Previews: PreviewProvider {
     static var previews: some View {
         MainListView()
     }
-}
 }
 
