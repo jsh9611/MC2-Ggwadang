@@ -18,7 +18,7 @@ struct tabView: View {
     var body: some View {
         VStack{
             TabView(selection: $selected){
-                testView()
+                HomeView()
                     .tabItem {
                         Image(systemName:(selected == 0 ? "house.fill" : "house"))
                     }

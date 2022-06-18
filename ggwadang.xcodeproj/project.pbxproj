@@ -19,7 +19,12 @@
 		11F2471128572E2D00DA595B /* EnterSugarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F2471028572E2D00DA595B /* EnterSugarView.swift */; };
 		11F24713285747AB00DA595B /* TempContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F24712285747AB00DA595B /* TempContentView.swift */; };
 		11F2484A285DC67600DA595B /* final_food_data.csv in Resources */ = {isa = PBXBuildFile; fileRef = 11F24849285DC67600DA595B /* final_food_data.csv */; };
-		3F1F0BE428596813007E9400 /* MainView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1F0BE328596813007E9400 /* MainView2.swift */; };
+		4D059C61285E3C47009E12E1 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D059C60285E3C47009E12E1 /* StatusView.swift */; };
+		4D059C63285E3C77009E12E1 /* MainFullListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D059C62285E3C77009E12E1 /* MainFullListView.swift */; };
+		4D059C65285E3C85009E12E1 /* MainListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D059C64285E3C85009E12E1 /* MainListView.swift */; };
+		4D059C67285E3C8E009E12E1 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D059C66285E3C8E009E12E1 /* MainView.swift */; };
+		4D059C69285E3D0B009E12E1 /* ProcessCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D059C68285E3D0B009E12E1 /* ProcessCircleView.swift */; };
+		4D059C6B285E3D22009E12E1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D059C6A285E3D22009E12E1 /* HomeView.swift */; };
 		4D0C64C8285AFB0200FF70E6 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0C64C7285AFB0200FF70E6 /* ListView.swift */; };
 		4D0C64CC285AFBA700FF70E6 /* LargeCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0C64CB285AFBA700FF70E6 /* LargeCategoryView.swift */; };
 		4D0C64CE285AFBEB00FF70E6 /* MediumCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0C64CD285AFBEB00FF70E6 /* MediumCategoryView.swift */; };
@@ -64,7 +69,12 @@
 		11F2471028572E2D00DA595B /* EnterSugarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterSugarView.swift; sourceTree = "<group>"; };
 		11F24712285747AB00DA595B /* TempContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempContentView.swift; sourceTree = "<group>"; };
 		11F24849285DC67600DA595B /* final_food_data.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = final_food_data.csv; path = Assets/final_food_data.csv; sourceTree = "<group>"; };
-		3F1F0BE328596813007E9400 /* MainView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView2.swift; sourceTree = "<group>"; };
+		4D059C60285E3C47009E12E1 /* StatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
+		4D059C62285E3C77009E12E1 /* MainFullListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainFullListView.swift; sourceTree = "<group>"; };
+		4D059C64285E3C85009E12E1 /* MainListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainListView.swift; sourceTree = "<group>"; };
+		4D059C66285E3C8E009E12E1 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		4D059C68285E3D0B009E12E1 /* ProcessCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessCircleView.swift; sourceTree = "<group>"; };
+		4D059C6A285E3D22009E12E1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		4D0C64C7285AFB0200FF70E6 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		4D0C64CB285AFBA700FF70E6 /* LargeCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeCategoryView.swift; sourceTree = "<group>"; };
 		4D0C64CD285AFBEB00FF70E6 /* MediumCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumCategoryView.swift; sourceTree = "<group>"; };
@@ -193,7 +203,12 @@
 				11F24704285724C200DA595B /* StorageKeys.swift */,
 				11F24849285DC67600DA595B /* final_food_data.csv */,
 				11F24709285725D600DA595B /* Components */,
-				3F1F0BE328596813007E9400 /* MainView2.swift */,
+				4D059C60285E3C47009E12E1 /* StatusView.swift */,
+				4D059C62285E3C77009E12E1 /* MainFullListView.swift */,
+				4D059C64285E3C85009E12E1 /* MainListView.swift */,
+				4D059C66285E3C8E009E12E1 /* MainView.swift */,
+				4D059C68285E3D0B009E12E1 /* ProcessCircleView.swift */,
+				4D059C6A285E3D22009E12E1 /* HomeView.swift */,
 				4D727601284CEE5800F4DCC6 /* Assets.xcassets */,
 				4D727603284CEE5800F4DCC6 /* Preview Content */,
 			);
@@ -349,8 +364,10 @@
 				4D4E3711285B5E8F00B777C1 /* Record.swift in Sources */,
 				11F2470B285725FB00DA595B /* TextFieldBox.swift in Sources */,
 				4DB1F298285DAD8600BA7465 /* FoodDB.swift in Sources */,
+				4D059C63285E3C77009E12E1 /* MainFullListView.swift in Sources */,
 				11F247032857249700DA595B /* extentions.swift in Sources */,
 				11F2470D2857274300DA595B /* GenderSegmentedBar.swift in Sources */,
+				4D059C61285E3C47009E12E1 /* StatusView.swift in Sources */,
 				D43636A3285E1F9000E7827D /* PieChartView.swift in Sources */,
 				11F24713285747AB00DA595B /* TempContentView.swift in Sources */,
 				11F24705285724C200DA595B /* StorageKeys.swift in Sources */,
@@ -358,6 +375,7 @@
 				4D0C64CE285AFBEB00FF70E6 /* MediumCategoryView.swift in Sources */,
 				4D4E370F285B5E8500B777C1 /* RecordDB.swift in Sources */,
 				4D0C64CC285AFBA700FF70E6 /* LargeCategoryView.swift in Sources */,
+				4D059C6B285E3D22009E12E1 /* HomeView.swift in Sources */,
 				4DB1F296285DAD5900BA7465 /* Food.swift in Sources */,
 				4D0C64D2285AFC5500FF70E6 /* IntakeAmountView.swift in Sources */,
 				D43636AE285E1FB200E7827D /* SegView.swift in Sources */,
@@ -374,13 +392,15 @@
 				D43636A5285E1F9600E7827D /* PieSliceData.swift in Sources */,
 				D436369E285E1F3000E7827D /* BarChartView.swift in Sources */,
 				11F247012857235700DA595B /* GuideLastPageView.swift in Sources */,
+				4D059C69285E3D0B009E12E1 /* ProcessCircleView.swift in Sources */,
 				D436369C285E1F2800E7827D /* BarChartModel.swift in Sources */,
 				11F246FB2857222C00DA595B /* GuideTabView.swift in Sources */,
+				4D059C67285E3C8E009E12E1 /* MainView.swift in Sources */,
 				11F2471128572E2D00DA595B /* EnterSugarView.swift in Sources */,
 				11F246FF2857234300DA595B /* GuidePageView.swift in Sources */,
 				D43636AD285E1FB200E7827D /* SegmentedPicker.swift in Sources */,
 				4DB1F29A285DAD9200BA7465 /* FoodStore.swift in Sources */,
-				3F1F0BE428596813007E9400 /* MainView2.swift in Sources */,
+				4D059C65285E3C85009E12E1 /* MainListView.swift in Sources */,
 				D43636AC285E1FB200E7827D /* SizeAwareViewModifier.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
