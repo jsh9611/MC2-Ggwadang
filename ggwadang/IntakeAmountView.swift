@@ -25,15 +25,18 @@ struct IntakeAmountView: View {
     //    @State var isSelected = [false, false, false, false, false]
     @State var directTyping = false
     
-    @State var intake : Double = 0 // serving: 섭취량 -> 섭취량도 저장해야하는지
+    @State var foodAmount : Double = 0  // 섭취하는 음식의 총량
     @State var buttonState : Int = 0    // 현재 선택한 카테고리명
     
-    // TODO: 카테고리별로 단위, 1회제공량 정의해야함 (제품당 단위 ex. 음료1캔=190ml)
-    @State var foodAmount: String = "200"
-    var servingSize = 190.0 // foodAmount로 적용해야함
+    // TODO: 데이터베이스로부터 1회제공량 불러오기
+    //@State var foodAmount: String = "200"
+    var servingSize = 190.0
     
     // TODO: 데이터베이스로부터 제품 1g당 당류 불러오기 (=sugarAmount)
     var sugarAmount = 0.47
+    
+    // TODO: 데이터베이스로부터 용량 불러오기
+    let unit = ""
     
     var gridItemLayout = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     
@@ -66,7 +69,7 @@ struct IntakeAmountView: View {
                             
                             HStack {
                                 VStack (alignment: .leading){
-                                    Text("당류 \(String(format: "%.1f", intake*sugarAmount))g")
+                                    Text("당류 \(String(format: "%.1f", foodAmount*sugarAmount))g")
                                         .font(.title3)
                                         .fontWeight(.bold)
                                     HStack {
@@ -80,7 +83,7 @@ struct IntakeAmountView: View {
                                             HStack {
                                                 
                                                 TextField("200",
-                                                          value: $intake,
+                                                          value: $foodAmount,
                                                           formatter: formatter)
                                                 .frame(height: 60)
                                                 .padding(.leading, 10)
@@ -131,8 +134,7 @@ struct IntakeAmountView: View {
                         buttonState = num
                         self.isSelected[buttonState].toggle()
                         // 각 버튼의 배수 x 개당(컵,개,덩어리) 용량 = 선택한 용량
-                        intake = Double(String(format: "%.0f", categoryRate[buttonState] * Double(foodAmount)!)) ?? 0
-                        print(intake)
+                        foodAmount = Double(String(format: "%.0f", categoryRate[buttonState] * servingSize)) ?? 0
                     } label: {
                         Text("\(servingCategory[num])")
                             .padding()
@@ -155,7 +157,6 @@ struct IntakeAmountView: View {
                     self.isSelected[buttonState].toggle()
                     // 텍스트 필드에 대한 focus를 On
                     isFocused = true
-                    print(intake)
                 } label: {
                     Text("직접입력")
                         .fontWeight(.bold)
@@ -174,18 +175,18 @@ struct IntakeAmountView: View {
             }
             .padding(.top, 10)
             .padding(.horizontal, 10)
-            // 등장과 동시에 intake에 값을 넣어준다.(디폴트로 선택한 0번 버튼의 값이 들어감)
+            // 등장과 동시에 foodAmount에 값을 넣어준다.(디폴트로 선택한 0번 버튼의 값이 들어감)
             .onAppear {
                 isSelected[buttonState].toggle()
-                intake = Double(String(format: "%.0f", categoryRate[buttonState] * Double(foodAmount)!)) ?? 0
+                foodAmount = Double(String(format: "%.0f", categoryRate[buttonState] * servingSize)) ?? 0
             }
             
             Spacer()
             Button {
-                print(intake, "ml 입력받았어요")
-                print(intake*sugarAmount, "g 설탕을 저장했어요")
+                print(foodAmount, "ml 입력받았어요")
+                print(foodAmount*sugarAmount, "g 설탕을 저장했어요")
                 
-                if intake <= 0 || intake > 10000 {
+                if foodAmount <= 0 || foodAmount > 10000 {
                     showingAlert.toggle()
                 } else {
                     saveRecord()
@@ -203,7 +204,7 @@ struct IntakeAmountView: View {
                 Button("넹~~") {
                     print("힝")
                     isFocused.toggle()
-                    intake = Double(foodAmount) ?? 0
+                    foodAmount = servingSize
                 }
             } message: {
                 Text("0~10000 사이의 값을 입력해주세용")
@@ -229,7 +230,9 @@ extension IntakeAmountView {
             large: large_isSelected,
             medium: medium_isSelected,
             small: small_isSelected,
-            sugar: intake*sugarAmount)
+            calculatedSugar: foodAmount*sugarAmount,
+            foodAmount: foodAmount,
+            unit: unit)
     }
     
     func dateFormatter(date: Date) -> String {
