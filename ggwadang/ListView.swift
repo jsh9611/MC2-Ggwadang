@@ -10,17 +10,17 @@ import RealmSwift
 
 struct ListView: View {
     @EnvironmentObject var store: RecordStore
+    @EnvironmentObject var food: FoodStore
     @State var isPresented = false
-    let records: [Record]
     
     var body: some View {
         VStack{
             List {
-                if records.isEmpty {
+                if store.records.isEmpty {
                     Text("List is now empty...")
                 }
-                ForEach(records) { record in
-                    RecordRow(record: record).environmentObject(self.store)
+                ForEach(store.records) { record in
+                    RecordRow(record: record)
                 }
             }
             Spacer()
@@ -30,6 +30,18 @@ struct ListView: View {
                 Image(systemName: "plus")
             }
             .fullScreenCover(isPresented: $isPresented, content: {LargeCategoryView(isPresented: self.$isPresented).environmentObject(self.store)})
+        }
+    }
+    
+}
+
+struct FoodRow: View {
+//    @EnvironmentObject var food: FoodStore
+    let record: Food
+    
+    var body: some View {
+        HStack {
+            Text("\(record.large) > \(record.medium) > \(record.small) / \(record.sugarPerGram)")
         }
     }
 }

@@ -11,11 +11,15 @@ struct IntakeAmountView: View {
     @FocusState private var isFocused: Bool
     
     @EnvironmentObject var store: RecordStore
+    @EnvironmentObject var food: FoodStore
+    
     @Binding var isPresented: Bool
     @State var Today = Date.now
     @Binding var large_isSelected: String
     @Binding var medium_isSelected: String
     @Binding var small_isSelected: String
+    
+    
     
     let servingCategory = ["1/3컵", "1/2컵", "1컵", "2컵", "3컵", "직접입력"]
     let categoryRate : [Double] = [0.333, 0.5, 1, 2, 3, -1] // 계산하기 쉽도록 테이블 작성
@@ -29,15 +33,16 @@ struct IntakeAmountView: View {
     @State var buttonState : Int = 0    // 현재 선택한 카테고리명
     
     // TODO: 데이터베이스로부터 1회제공량 불러오기
+//    var food: Food
     //@State var foodAmount: String = "200"
     var servingSize = 190.0
     
     // TODO: 데이터베이스로부터 제품 1g당 당류 불러오기 (=sugarAmount)
-    var sugarAmount = 0.47
+    @State var sugarAmount : Double = 0.47
     
     // TODO: 데이터베이스로부터 용량 불러오기
     let unit = ""
-    
+        
     var gridItemLayout = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     
     // TextField에 숫자를 표시하려면 NumberFormatter 를 사용해야 합니다
@@ -48,179 +53,188 @@ struct IntakeAmountView: View {
     }()
     
     var body: some View {
-        VStack{
-            ZStack {
-                // 위에 배경부분
-                LinearGradient(gradient: Gradient(colors: [Color(hex: 0x80BBB7), Color(hex: 0x80BF88)]),
-                               startPoint: .top, endPoint: .center)
-                .edgesIgnoringSafeArea(.all)
-                
-                HStack {
-                    VStack {
+        ForEach(food.foods.filter{
+            $0.large == large_isSelected &&
+            $0.medium == medium_isSelected &&
+            $0.small == small_isSelected
+        }) { foo in // 똥이에요
+            VStack{
+                ZStack {
+                    // 위에 배경부분
+                    LinearGradient(gradient: Gradient(colors: [Color(hex: 0x80BBB7), Color(hex: 0x80BF88)]),
+                                   startPoint: .top, endPoint: .center)
+                    .edgesIgnoringSafeArea(.all)
+                    
+                    HStack {
                         VStack {
-                            HStack {
-                                Text("\(medium_isSelected) < \(small_isSelected)") // 최대 11글자
-                                    .font(.title2)
-                                    .fontWeight(.bold)
-                                    .lineLimit(1)
-                                Spacer()
-                            }
-                            
-                            
-                            HStack {
-                                VStack (alignment: .leading){
-                                    Text("당류 \(String(format: "%.1f", foodAmount*sugarAmount))g")
-                                        .font(.title3)
+                            VStack {
+                                HStack {
+                                    Text("\(medium_isSelected) < \(small_isSelected)") // 최대 11글자
+                                        .font(.title2)
                                         .fontWeight(.bold)
-                                    HStack {
-                                        ZStack {
-                                            RoundedRectangle(cornerRadius: 15)
-                                                .fill(Color.white)
-                                                .opacity(0.1)
-                                                .shadow(color: .black.opacity(0.2), radius: 10, x: 10, y: 10)
-                                                .shadow(color: .white.opacity(0.7), radius: 10, x: -5, y: -5)
-                                            
-                                            HStack {
+                                        .lineLimit(1)
+                                    Spacer()
+                                }
+                                
+                                
+                                HStack {
+                                    VStack (alignment: .leading){
+                                        Text("당류 \(String(format: "%.1f", foodAmount*(Double(foo.sugarPerGram) ?? 0)))g")
+                                            .font(.title3)
+                                            .fontWeight(.bold)
+                                        HStack {
+                                            ZStack {
+                                                RoundedRectangle(cornerRadius: 15)
+                                                    .fill(Color.white)
+                                                    .opacity(0.1)
+                                                    .shadow(color: .black.opacity(0.2), radius: 10, x: 10, y: 10)
+                                                    .shadow(color: .white.opacity(0.7), radius: 10, x: -5, y: -5)
                                                 
-                                                TextField("200",
-                                                          value: $foodAmount,
-                                                          formatter: formatter)
-                                                .frame(height: 60)
-                                                .padding(.leading, 10)
-                                                .focused($isFocused)    // 텍스트필드를 바라보도록 활성화
-                                                .keyboardType(.numberPad)
-                                                .font(.title2)
-                                                
-                                                Text("ml")
+                                                HStack {
+                                                    
+                                                    TextField("200",
+                                                              value: $foodAmount,
+                                                              formatter: formatter)
+                                                    .frame(height: 60)
+                                                    .padding(.leading, 10)
+                                                    .focused($isFocused)    // 텍스트필드를 바라보도록 활성화
+                                                    .keyboardType(.numberPad)
                                                     .font(.title2)
-                                                    .fontWeight(.bold)
-                                                    .padding(.trailing, 5)
-                                                Spacer()
-                                            }
+                                                    
+                                                    Text("ml")
+                                                        .font(.title2)
+                                                        .fontWeight(.bold)
+                                                        .padding(.trailing, 5)
+                                                    Spacer()
+                                                }
+                                                
+                                            }.frame(width: 110, height: 60)
                                             
-                                        }.frame(width: 110, height: 60)
+                                        }
+                                        
                                         
                                     }
                                     
-                                    
+                                    Spacer()
+                                    Text("🍪")
+                                        .modifier(FittingFontSizeModifier()) // .resizable()처럼 사용하기 위해 추가함
+                                        .frame(width: 100, height: 100)
+                                        .padding(.trailing, 20)
                                 }
                                 
-                                Spacer()
-                                Text("🍪")
-                                    .modifier(FittingFontSizeModifier()) // .resizable()처럼 사용하기 위해 추가함
-                                    .frame(width: 100, height: 100)
-                                    .padding(.trailing, 20)
                             }
+                            .foregroundColor(.white)
+                            .padding(.horizontal, 20)
+                            
                             
                         }
-                        .foregroundColor(.white)
-                        .padding(.horizontal, 20)
-                        
-                        
                     }
                 }
-            }
-            .frame(height: 250) // 스캐치 기준 300이라 일단 이렇게함
-            
-            LazyVGrid(columns: gridItemLayout, spacing: 10) {
-                ForEach((0 ..< servingCategory.count - 1), id: \.self) { num in
-                    // 이전에 눌렀던 버튼을 해제한 뒤 현재 num에 대한 버튼을 활성화
+                .frame(height: 250) // 스캐치 기준 300이라 일단 이렇게함
+                
+                LazyVGrid(columns: gridItemLayout, spacing: 10) {
+                    ForEach((0 ..< servingCategory.count - 1), id: \.self) { num in
+                        // 이전에 눌렀던 버튼을 해제한 뒤 현재 num에 대한 버튼을 활성화
+                        Button {
+                            // 직접입력을 눌렀다가 다른 버튼을 누르는 경우 포커스 해제
+                            if isFocused { isFocused.toggle() }
+                            // 이전에 눌렀던 버튼을 해제
+                            self.isSelected[buttonState].toggle()
+                            // 이번에 눌렀던 버튼의 index를 저장하고 버튼 활성화
+                            buttonState = num
+                            self.isSelected[buttonState].toggle()
+                            // 각 버튼의 배수 x 개당(컵,개,덩어리) 용량 = 선택한 용량
+                            foodAmount = Double(String(format: "%.0f", categoryRate[buttonState] * (Double(foo.servingSize) ?? 0) )) ?? 0
+                        } label: {
+                            Text("\(servingCategory[num])")
+                                .padding()
+                                .foregroundColor(self.isSelected[num] ? Color.white : Color.black)
+                        }
+                        .frame(width: 110, height: 60)
+                        .background(RoundedRectangle(cornerRadius: 15)
+                            .fill(self.isSelected[num] ? Color(hex: 0x6CADA5) : Color.white)
+                            .shadow(color: .black.opacity(0.2), radius: 10, x: 10, y: 10)
+                            .shadow(color: .white.opacity(0.7), radius: 10, x: -5, y: -5)
+                                    
+                        )
+                    }
+                    
                     Button {
-                        // 직접입력을 눌렀다가 다른 버튼을 누르는 경우 포커스 해제
-                        if isFocused { isFocused.toggle() }
+                        // 직접입력
                         // 이전에 눌렀던 버튼을 해제
                         self.isSelected[buttonState].toggle()
-                        // 이번에 눌렀던 버튼의 index를 저장하고 버튼 활성화
-                        buttonState = num
+                        buttonState = servingCategory.count - 1
                         self.isSelected[buttonState].toggle()
-                        // 각 버튼의 배수 x 개당(컵,개,덩어리) 용량 = 선택한 용량
-                        foodAmount = Double(String(format: "%.0f", categoryRate[buttonState] * servingSize)) ?? 0
+                        // 텍스트 필드에 대한 focus를 On
+                        isFocused = true
                     } label: {
-                        Text("\(servingCategory[num])")
+                        Text("직접입력")
+                            .fontWeight(.bold)
                             .padding()
-                            .foregroundColor(self.isSelected[num] ? Color.white : Color.black)
+                            .foregroundColor(Color(hex: 0x6CADA5))
+                        
                     }
                     .frame(width: 110, height: 60)
                     .background(RoundedRectangle(cornerRadius: 15)
-                        .fill(self.isSelected[num] ? Color(hex: 0x6CADA5) : Color.white)
+                        .fill(Color.white)
                         .shadow(color: .black.opacity(0.2), radius: 10, x: 10, y: 10)
-                        .shadow(color: .white.opacity(0.7), radius: 10, x: -5, y: -5)
-                                
-                    )
-                }
-                
-                Button {
-                    // 직접입력
-                    // 이전에 눌렀던 버튼을 해제
-                    self.isSelected[buttonState].toggle()
-                    buttonState = servingCategory.count - 1
-                    self.isSelected[buttonState].toggle()
-                    // 텍스트 필드에 대한 focus를 On
-                    isFocused = true
-                } label: {
-                    Text("직접입력")
-                        .fontWeight(.bold)
-                        .padding()
-                        .foregroundColor(Color(hex: 0x6CADA5))
+                        .shadow(color: .white.opacity(0.7), radius: 10, x: -5, y: -5))
+                    .overlay(RoundedRectangle(cornerRadius: 15)
+                        .stroke(self.isFocused ? Color(hex: 0x6CADA5) : Color.clear, lineWidth: 2))
                     
                 }
-                .frame(width: 110, height: 60)
-                .background(RoundedRectangle(cornerRadius: 15)
-                    .fill(Color.white)
-                    .shadow(color: .black.opacity(0.2), radius: 10, x: 10, y: 10)
-                    .shadow(color: .white.opacity(0.7), radius: 10, x: -5, y: -5))
-                .overlay(RoundedRectangle(cornerRadius: 15)
-                    .stroke(self.isFocused ? Color(hex: 0x6CADA5) : Color.clear, lineWidth: 2))
-                
-            }
-            .padding(.top, 10)
-            .padding(.horizontal, 10)
-            // 등장과 동시에 foodAmount에 값을 넣어준다.(디폴트로 선택한 0번 버튼의 값이 들어감)
-            .onAppear {
-                isSelected[buttonState].toggle()
-                foodAmount = Double(String(format: "%.0f", categoryRate[buttonState] * servingSize)) ?? 0
-            }
-            
-            Spacer()
-            Button {
-                print(foodAmount, "ml 입력받았어요")
-                print(foodAmount*sugarAmount, "g 설탕을 저장했어요")
-                
-                if foodAmount <= 0 || foodAmount > 10000 {
-                    showingAlert.toggle()
-                } else {
-                    saveRecord()
-                    isPresented.toggle()
+                .padding(.top, 10)
+                .padding(.horizontal, 10)
+                // 등장과 동시에 foodAmount에 값을 넣어준다.(디폴트로 선택한 0번 버튼의 값이 들어감)
+                .onAppear {
+                    isSelected[buttonState].toggle()
+                    foodAmount = Double(String(format: "%.0f", categoryRate[buttonState] * (Double(foo.servingSize) ?? 0) )) ?? 0
                 }
+                
+                Spacer()
+                Button {
+                    print(foodAmount, "ml 입력받았어요")
+                    print(foodAmount*(Double(foo.sugarPerGram) ?? 0), "g 설탕을 저장했어요")
+                    
+                    if foodAmount <= 0 || foodAmount > 10000 {
+                        showingAlert.toggle()
+                    } else {
+                        sugarAmount = (Double(foo.sugarPerGram) ?? 0)
+                        saveRecord()
+                        isPresented.toggle()
+                    }
 
-            } label: {
-                Text("추가하기")
-                    .frame(width: (UIScreen.main.bounds.width)*0.9, height: 56)
-                    .foregroundColor(Color.white)
-            }
-            .background(RoundedRectangle(cornerRadius: 30).fill(Color(hex: 0x6CADA5)))
-            .padding(.vertical, 20)
-            .alert("범위 초과", isPresented: $showingAlert) {
-                Button("넹~~") {
-                    print("힝")
-                    isFocused.toggle()
-                    foodAmount = servingSize
+                } label: {
+                    Text("추가하기")
+                        .frame(width: (UIScreen.main.bounds.width)*0.9, height: 56)
+                        .foregroundColor(Color.white)
                 }
-            } message: {
-                Text("0~10000 사이의 값을 입력해주세용")
+                .background(RoundedRectangle(cornerRadius: 30).fill(Color(hex: 0x6CADA5)))
+                .padding(.vertical, 20)
+                .alert("범위 초과", isPresented: $showingAlert) {
+                    Button("넹~~") {
+                        print("힝")
+                        isFocused.toggle()
+                        foodAmount = servingSize
+                    }
+                } message: {
+                    Text("0~10000 사이의 값을 입력해주세용")
+                }
+            }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+    //                Text(small_isSelected)
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action:{
+                        isPresented.toggle()
+                    }){Image(systemName: "xmark")}
+                }
             }
         }
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-//                Text(small_isSelected)
-            }
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button(action:{
-                    isPresented.toggle()
-                }){Image(systemName: "xmark")}
-            }
+            
         }
-    }
+        
 }
 
 extension IntakeAmountView {
