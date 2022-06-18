@@ -32,6 +32,11 @@
 		4D727602284CEE5800F4DCC6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D727601284CEE5800F4DCC6 /* Assets.xcassets */; };
 		4D727605284CEE5800F4DCC6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D727604284CEE5800F4DCC6 /* Preview Assets.xcassets */; };
 		4DB1F26E285B6BAC00BA7465 /* RecordStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB1F26D285B6BAC00BA7465 /* RecordStore.swift */; };
+		4DB1F296285DAD5900BA7465 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB1F295285DAD5900BA7465 /* Food.swift */; };
+		4DB1F298285DAD8600BA7465 /* FoodDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB1F297285DAD8600BA7465 /* FoodDB.swift */; };
+		4DB1F29A285DAD9200BA7465 /* FoodStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB1F299285DAD9200BA7465 /* FoodStore.swift */; };
+		4DB1F29C285DADA200BA7465 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB1F29B285DADA200BA7465 /* TestView.swift */; };
+		4DB1F29E285DAF0300BA7465 /* final_food_data.csv in Resources */ = {isa = PBXBuildFile; fileRef = 4DB1F29D285DAF0300BA7465 /* final_food_data.csv */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +64,11 @@
 		4D727601284CEE5800F4DCC6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4D727604284CEE5800F4DCC6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4DB1F26D285B6BAC00BA7465 /* RecordStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordStore.swift; sourceTree = "<group>"; };
+		4DB1F295285DAD5900BA7465 /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
+		4DB1F297285DAD8600BA7465 /* FoodDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDB.swift; sourceTree = "<group>"; };
+		4DB1F299285DAD9200BA7465 /* FoodStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodStore.swift; sourceTree = "<group>"; };
+		4DB1F29B285DADA200BA7465 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		4DB1F29D285DAF0300BA7465 /* final_food_data.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = final_food_data.csv; path = ../../../../Downloads/final_food_data.csv; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +127,8 @@
 			children = (
 				4D4E370E285B5E8500B777C1 /* RecordDB.swift */,
 				4D4E3710285B5E8F00B777C1 /* Record.swift */,
+				4DB1F295285DAD5900BA7465 /* Food.swift */,
+				4DB1F297285DAD8600BA7465 /* FoodDB.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -153,6 +165,8 @@
 				11F24712285747AB00DA595B /* TempContentView.swift */,
 				11F247022857249700DA595B /* extentions.swift */,
 				11F24704285724C200DA595B /* StorageKeys.swift */,
+				4DB1F29B285DADA200BA7465 /* TestView.swift */,
+				4DB1F29D285DAF0300BA7465 /* final_food_data.csv */,
 				11F24709285725D600DA595B /* Components */,
 				4D727601284CEE5800F4DCC6 /* Assets.xcassets */,
 				4D727603284CEE5800F4DCC6 /* Preview Content */,
@@ -172,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				4DB1F26D285B6BAC00BA7465 /* RecordStore.swift */,
+				4DB1F299285DAD9200BA7465 /* FoodStore.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -243,6 +258,7 @@
 			files = (
 				4D727605284CEE5800F4DCC6 /* Preview Assets.xcassets in Resources */,
 				4D727602284CEE5800F4DCC6 /* Assets.xcassets in Resources */,
+				4DB1F29E285DAF0300BA7465 /* final_food_data.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,8 +270,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D0C64D0285AFC3400FF70E6 /* SmallCategoryView.swift in Sources */,
+				4DB1F29C285DADA200BA7465 /* TestView.swift in Sources */,
 				4D4E3711285B5E8F00B777C1 /* Record.swift in Sources */,
 				11F2470B285725FB00DA595B /* TextFieldBox.swift in Sources */,
+				4DB1F298285DAD8600BA7465 /* FoodDB.swift in Sources */,
 				11F247032857249700DA595B /* extentions.swift in Sources */,
 				11F2470D2857274300DA595B /* GenderSegmentedBar.swift in Sources */,
 				11F24713285747AB00DA595B /* TempContentView.swift in Sources */,
@@ -264,6 +282,7 @@
 				4D0C64CE285AFBEB00FF70E6 /* MediumCategoryView.swift in Sources */,
 				4D4E370F285B5E8500B777C1 /* RecordDB.swift in Sources */,
 				4D0C64CC285AFBA700FF70E6 /* LargeCategoryView.swift in Sources */,
+				4DB1F296285DAD5900BA7465 /* Food.swift in Sources */,
 				4D0C64D2285AFC5500FF70E6 /* IntakeAmountView.swift in Sources */,
 				4D7275FE284CEE5800F4DCC6 /* ggwadangApp.swift in Sources */,
 				4DB1F26E285B6BAC00BA7465 /* RecordStore.swift in Sources */,
@@ -274,6 +293,7 @@
 				11F246FB2857222C00DA595B /* GuideTabView.swift in Sources */,
 				11F2471128572E2D00DA595B /* EnterSugarView.swift in Sources */,
 				11F246FF2857234300DA595B /* GuidePageView.swift in Sources */,
+				4DB1F29A285DAD9200BA7465 /* FoodStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,7 +422,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ggwadang/Preview Content\"";
-				DEVELOPMENT_TEAM = 9FDS8R22C5;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -431,7 +451,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ggwadang/Preview Content\"";
-				DEVELOPMENT_TEAM = 9FDS8R22C5;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
