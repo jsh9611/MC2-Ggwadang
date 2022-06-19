@@ -17,14 +17,11 @@ let backgroundRed = LinearGradient(gradient: Gradient(colors: [Color("tangerine"
 let backgroundBlack = LinearGradient(gradient: Gradient(colors: [Color("gray"), Color("black")]), startPoint: .top, endPoint: .bottom)
 
 struct MainView: View {
-    // TODO: RecordDB로부터 오늘 먹은 레코드 불러오기 -> 섭취량 계산
-    // TODO: AppStorage에 저장된 사용자 목표 섭취량 가져오기
-    @State private var todaySugarValue: Double = 18
-//    @State private var sugarGoalValue: Double = 40
-    @State var progressValue: Double =  0.9
+    @State private var todaySugarValue: Double = 0
+    @State var progressValue: Double =  0
     @AppStorage(StorageKeys.sugar.rawValue) private var sugar : Double = UserDefaults.standard.double(forKey: "sugar")  // 유저의 설탕값
     let realm = try! Realm()
-    //public var testNumber: Float = 9.9
+
     static var dateFormat: DateFormatter {
         let formatter = DateFormatter()
         formatter.dateFormat = "YYYY년 M월 d일"
@@ -38,7 +35,6 @@ struct MainView: View {
         VStack{
             HStack {
                 Text(" ")
-                    .frame(width: 25, height: 25)
                     .frame(maxWidth: .infinity, alignment: .trailing)
                     .navigationBarTitleDisplayMode(.inline)
                     .navigationBarTitle("", displayMode: .inline)

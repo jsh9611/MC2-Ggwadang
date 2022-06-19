@@ -78,8 +78,7 @@ struct IntakeAmountView: View {
                                                 RoundedRectangle(cornerRadius: 15)
                                                     .fill(Color.white)
                                                     .opacity(0.1)
-                                                    .shadow(color: .black.opacity(0.2), radius: 10, x: 10, y: 10)
-                                                    .shadow(color: .white.opacity(0.7), radius: 10, x: -5, y: -5)
+                                                    .shadow(color: .black.opacity(0.15), radius: 20, y: 3)
                                                 
                                                 HStack {
                                                     
@@ -110,7 +109,6 @@ struct IntakeAmountView: View {
                                     Text("\(categoryEmoG[foo.large] ?? "🍪")")
                                         .modifier(FittingFontSizeModifier()) // .resizable()처럼 사용하기 위해 추가함
                                         .frame(width: 100, height: 100)
-                                        .padding(.trailing, 20)
                                 }
                                 
                             }
@@ -144,8 +142,7 @@ struct IntakeAmountView: View {
                         .frame(width: 110, height: 60)
                         .background(RoundedRectangle(cornerRadius: 15)
                             .fill(self.isSelected[num] ? Color(hex: 0x6CADA5) : Color.white)
-                            .shadow(color: .black.opacity(0.2), radius: 10, x: 10, y: 10)
-                            .shadow(color: .white.opacity(0.7), radius: 10, x: -5, y: -5)
+                            .shadow(color: .gray.opacity(0.15), radius: 20, y: 3)
                                     
                         )
                     }
@@ -168,8 +165,7 @@ struct IntakeAmountView: View {
                     .frame(width: 110, height: 60)
                     .background(RoundedRectangle(cornerRadius: 15)
                         .fill(Color.white)
-                        .shadow(color: .black.opacity(0.2), radius: 10, x: 10, y: 10)
-                        .shadow(color: .white.opacity(0.7), radius: 10, x: -5, y: -5))
+                        .shadow(color: .gray.opacity(0.15), radius: 20, y: 3))
                     .overlay(RoundedRectangle(cornerRadius: 15)
                         .stroke(self.isFocused ? Color(hex: 0x6CADA5) : Color.clear, lineWidth: 2))
                     
