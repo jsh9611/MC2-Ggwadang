@@ -47,7 +47,7 @@ struct RecordRow: View {
             Spacer()
             Text("당류 \(String(format: "%.1f", record.calculatedSugar))g")
             Button(action: deleteRecord) {
-                Image(systemName: "trash.circle.fill")
+                Image(systemName: "trash.fill")
             }
         }
     }
