@@ -16,12 +16,13 @@ class FoodDB: Object {
     @objc dynamic var sugarPerGram = ""
     @objc dynamic var servingSize = ""
     @objc dynamic var unit = ""
+    @objc dynamic var servingUnit = ""
     
 //    override static func primaryKey() -> String? {
 //        "id"
 //    }
 //
-    convenience init(id: String, large: String, medium: String, small: String, sugarPerGram: String, servingSize: String, unit: String) {
+    convenience init(id: String, large: String, medium: String, small: String, sugarPerGram: String, servingSize: String, unit: String, servingUnit: String) {
         self.init()
         self.id = id
         self.large = large
@@ -30,6 +31,7 @@ class FoodDB: Object {
         self.sugarPerGram = sugarPerGram
         self.servingSize = servingSize
         self.unit = unit
+        self.servingUnit = servingUnit
     }
     
 }
@@ -40,7 +42,7 @@ func csvToRealm() {
     if realm.objects(FoodDB.self).isEmpty {
         let foods = loadCSV(from: "final_food_data")
         for food in foods {
-            let item = FoodDB(id: food.id, large: food.large, medium: food.medium, small: food.small, sugarPerGram: food.sugarPerGram, servingSize: food.servingSize, unit: food.unit)
+            let item = FoodDB(id: food.id, large: food.large, medium: food.medium, small: food.small, sugarPerGram: food.sugarPerGram, servingSize: food.servingSize, unit: food.unit, servingUnit: food.servingUnit)
             try! realm.write {
                 realm.add([item])
             }
