@@ -11,7 +11,9 @@ import RealmSwift
 struct StatusView: View {
     
     // TODO: RecordDB로부터 오늘 먹은 레코드 불러오기 -> 섭취량 계산
-    @State private var intakeSugar: Double = 15
+//    @State private var intakeSugar: Double = 15
+    @State private var todaySugarValue: Double = 0
+    @Binding var isPresented: Bool
     let realm = try! Realm()
     // TODO: AppStorage에 저장된 사용자 목표 섭취량 가져오기
     @AppStorage(StorageKeys.sugar.rawValue) private var sugar : Double = UserDefaults.standard.double(forKey: "sugar")
@@ -31,7 +33,7 @@ struct StatusView: View {
                         .frame(height: 5)
                     
                     // Double에 맞게 변경(소수점 1자리만 표현! - 소수점 2째자리에서 반올림함)
-                    Text("\(String(format: "%.1f", intakeSugar))g")
+                    Text("\(String(format: "%.1f", todaySugarValue))g")
                         .fontWeight(.bold)
                 }
                 Spacer()
@@ -64,19 +66,30 @@ struct StatusView: View {
                         .font(.system(size:15, weight: .medium))
                     Spacer()
                         .frame(height: 5)
-                    Text("\(String(format: "%.1f", (sugar - intakeSugar)))g")
+                    Text("\(String(format: "%.1f", (sugar - todaySugarValue)))g")
                         .fontWeight(.bold)
                 }
             }
             .foregroundColor(.white)
         }
+        .onChange(of: isPresented) { sheetIsOn in
+            if sheetIsOn { return }
+        
+            let userRecords = realm.objects(RecordDB.self).filter("date == '\(yyyyMMdd(date: Date()))'")
+            var sum : Double = 0
+            for temp in userRecords {
+                sum += temp.calculatedSugar
+            }
+            todaySugarValue = sum
+        }
+        
         .onAppear {
             let userRecords = realm.objects(RecordDB.self).filter("date == '\(yyyyMMdd(date: Date()))'")
             var sum : Double = 0
             for temp in userRecords {
                 sum += temp.calculatedSugar
             }
-            intakeSugar = sum
+            todaySugarValue = sum
         }
     }
     func yyyyMMdd(date: Date) -> String {
@@ -88,10 +101,10 @@ struct StatusView: View {
 
 }
 
-struct StatusView_Previews: PreviewProvider {
-    static var previews: some View {
-        StatusView()
-    }
-}
+//struct StatusView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        StatusView()
+//    }
+//}
 
 
