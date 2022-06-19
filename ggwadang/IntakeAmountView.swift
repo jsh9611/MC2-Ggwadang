@@ -226,11 +226,4 @@ extension IntakeAmountView {
             foodAmount: foodAmount,
             unit: unit)
     }
-    
-    func dateFormatter(date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyyMMdd"
-        let converted = formatter.string(from: date)
-        return converted
-    }
 }
