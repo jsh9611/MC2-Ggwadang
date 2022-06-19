@@ -27,11 +27,11 @@ struct MainListView: View {
                     HStack {
                         VStack (alignment: .leading){
                             Text("\(todayArray[0][0])")
-                            Text("\(todayArray[0][1])\(todayArray[0][2])")
+                            Text("\((String(format: "%.1f",(todayArray[0][1] as NSString).doubleValue)))\(todayArray[0][2])")
                                 .font(.system(size:13))
                         }
                         Spacer()
-                        Text("당류 \(todayArray[0][3])g")
+                        Text("당류 \((String(format: "%.1f",(todayArray[0][3] as NSString).doubleValue)))g")
                     }
                     .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
                 }
@@ -45,11 +45,11 @@ struct MainListView: View {
                     HStack {
                         VStack (alignment: .leading){
                             Text("\(todayArray[1][0])")
-                            Text("\(todayArray[1][1])\(todayArray[1][2])")
+                            Text("\((String(format: "%.1f",(todayArray[1][1] as NSString).doubleValue)))\(todayArray[1][2])")
                                 .font(.system(size:13))
                         }
                         Spacer()
-                        Text("당류 \(todayArray[1][3])g")
+                        Text("당류 \((String(format: "%.1f",(todayArray[1][3] as NSString).doubleValue)))g")
                     }
                     .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
                     
