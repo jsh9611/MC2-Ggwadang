@@ -13,6 +13,7 @@ struct SegView: View {
     //@EnvironmentObject var store: RecordStore
     @State var testtest: Double = 0.0
     @State var stringTest: String = ""
+    @State var shibal: Bool = false
     let records : [Record]
     
     //SegView에서 객체 생성 후, SegPicker에서 해당 모델 관찰
@@ -94,6 +95,12 @@ struct SegView: View {
             //End of First VStack View -> Rendering Whole View
         }
         //End of Scroll View
+        .onAppear{
+            TestModel.getTotalSugar(section: TestModel.selection, records: records)
+        }
+        .onChange(of: shibal){yabal in
+            TestModel.getTotalSugar(section: TestModel.selection, records: records)
+        }
     }
     //End of Body View
     

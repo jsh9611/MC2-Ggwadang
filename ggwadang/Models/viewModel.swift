@@ -24,6 +24,9 @@ class viewModel: ObservableObject{
     //월은 해당 일이 속한 달의 1~4주
     //연은 2022년
     func getTotalSugar(section: Int, records: [Record]){
+        
+        print("여기로 옴")
+        print(records)
         //For Sorting
         var sortedRecords = records
         sortedRecords.sort{
@@ -31,13 +34,14 @@ class viewModel: ObservableObject{
         }
         //만약에 동일한 section을 누른다면 아무런 변화 없음
         if(self.selection == section){
-            return
+            self.values = getSugarAmountFromUsers(records: sortedRecords)
         }
-        
+        print(sortedRecords)
         //각각의 section별로의 데이터 추출
         switch section{
         case 0:
-            getSugarAmountFromUsers(records: sortedRecords)
+            print("shibal")
+            self.values = getSugarAmountFromUsers(records: sortedRecords)
         case 1:
             self.values = [0,0,100,100,100,100,100,100,100] 
         case 2:
@@ -47,7 +51,7 @@ class viewModel: ObservableObject{
         }
     }
     
-    func getSugarAmountFromUsers(records: [Record]){
+    func getSugarAmountFromUsers(records: [Record]) -> [Double]{
         var bread: Double = 0
         var snack: Double = 0
         var nuts: Double = 0
@@ -83,6 +87,6 @@ class viewModel: ObservableObject{
                 self.values = [0,0,0,0,0,0,0,0,0]
             }
         }
-        self.values = [snack,nuts,bread,icecream,dairy,drinks,chocolate,caramel,candy]
+        return ([snack,nuts,bread,icecream,dairy,drinks,chocolate,caramel,candy])
     }
 }
