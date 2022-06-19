@@ -10,9 +10,13 @@ import Foundation
 
 //SegView Start
 struct SegView: View {
-    @StateObject var TestModel = viewModel()
-    @State var testtest: Int = 0
+    //@EnvironmentObject var store: RecordStore
+    @State var testtest: Double = 0.0
     @State var stringTest: String = ""
+    let records : [Record]
+    
+    //SegView에서 객체 생성 후, SegPicker에서 해당 모델 관찰
+    @StateObject var TestModel = viewModel()
     
     //@State var dataPoints: [double] -> BarChart에 들어갈 내용 -> 주/월/년 별로의 실질 데이터
     //@State var values: [Int] -> PieChart에 들어가 내용 -> 각 당 그람수
@@ -30,7 +34,7 @@ struct SegView: View {
                     .frame(width: 350, alignment: .trailing)
                 
                 //Segment Picker View
-                SegmentedPicker(ViewModel: TestModel)
+                SegmentedPicker(ViewModel: TestModel, records: self.records)
                     .frame(width: 350)
                 //End of Segment Picker View
                 
@@ -40,21 +44,18 @@ struct SegView: View {
                     VStack(alignment:.leading){
                         Text("섭취한 당류")
                             .font(.callout)
-                        Text("  \(testtest)g")
+                        Text("  \(testtest,specifier: "%.1f")g")
                             .font(.system(size: 28,weight: .bold))
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(EdgeInsets(top: 10, leading: 10, bottom: 0, trailing: 0))
+                    .padding(EdgeInsets(top: 20, leading: 10, bottom: -20, trailing: 0))
                 
                     BarChart()
                         .frame(maxWidth: .infinity)
-//                        .border(Color.blue)
-                    
+                        .border(Color.blue)
                 }
-                
+                .border(Color.blue)
                 //End of BarChart
-                
-                //Spacer(minLength: 1000)
                 
                 //PieChart Section Start
                 VStack{
@@ -62,11 +63,11 @@ struct SegView: View {
                     VStack(alignment:.leading){
                         Text("선택한 카테고리")
                             .font(.callout)
-                        Text("\(stringTest) \(testtest)g")
+                        Text("\(stringTest) \(testtest,specifier: "%.1f")g")
                             .font(.system(size: 28,weight: .bold))
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(EdgeInsets(top: 10, leading: 10, bottom: 0, trailing: 0))
+                    .padding(EdgeInsets(top: 20, leading: 10, bottom: -10, trailing: 0))
                     //End of Text Rendering for PieChartView
                 //PieChartView
                 PieChartView(testtest: $testtest,
@@ -85,19 +86,15 @@ struct SegView: View {
                                      
                             innerRadiusFraction: 0.42)
                     .scaledToFit()
-                    .padding(EdgeInsets(top: -20, leading: 10, bottom: -100, trailing: 0))
+                    .padding(EdgeInsets(top: 0, leading: 10, bottom: -100, trailing: 0))
                 }
-                .border(Color.black)
-
+                .border(Color.red)
                 //End of PieChart Section
             }
-            
             //End of First VStack View -> Rendering Whole View
         }
-        
         //End of Scroll View
     }
-    
     //End of Body View
     
     func selectedNumber(number: Int) -> Text{
@@ -115,6 +112,7 @@ struct SegView: View {
 }
 //End of SegView struct
 
+/*
 struct SegView_Previews: PreviewProvider {
     static var previews: some View {
         SegView(
@@ -122,5 +120,5 @@ struct SegView_Previews: PreviewProvider {
         )
     }
 }
-
+*/
 //format %.1f

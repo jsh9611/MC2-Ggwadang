@@ -58,8 +58,12 @@ struct SegmentedPicker: View {
     }
     
     //Picker property 설정
+    //SegView에서 생성된 viewModel 참조
     @ObservedObject var ViewModel: viewModel
     @State private var segmentSize: CGSize = .zero
+    
+    //사용자가 먹은 음식들 저장된 DB데이터
+    let records : [Record]
     
     private let numbers: [String] = ["주","월","년"]
     var body: some View {
@@ -103,12 +107,13 @@ struct SegmentedPicker: View {
                 .eraseToAnyView()
                 )
     }
+    
     //해당 되는 숫자의 탭을 눌렀을 때의 index값 변경을 위한 function
     private func onItemTap(index: Int) {
         guard index < self.numbers.count else {
             return
         }
-        ViewModel.getTotalSugar(section: index)
+        ViewModel.getTotalSugar(section: index, records: self.records)
         ViewModel.selection = index
         
     }
@@ -118,10 +123,11 @@ struct SegmentedPicker: View {
     }
 }
     
-
+/*
 struct SegmentedPicker_Previews: PreviewProvider {
     static var previews: some View {
         SegmentedPicker(ViewModel: viewModel())
     }
 }
+ */
 

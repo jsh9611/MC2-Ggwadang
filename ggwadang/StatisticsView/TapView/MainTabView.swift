@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct tabView: View {
+struct MainTabView: View {
     @State private var selected = 0
     @State private var oldSelected = 0
     @EnvironmentObject var store: RecordStore
@@ -39,16 +39,12 @@ struct tabView: View {
                     }
                     .tag(1)
                 
-                SegView()
+                SegView(records: self.records)
                     .tabItem {
                         Image(systemName: (selected == 2 ? "chart.bar.fill" : "chart.bar"))
                     }
                     .tag(2)
-                    /*
-                    .onAppear{
-                        self.oldSelected = self.selected
-                    }
-                    */
+                    
                 }
                 .fullScreenCover(isPresented: $isPresented, content: {LargeCategoryView(isPresented: self.$isPresented).environmentObject(self.store)})
         }
@@ -57,9 +53,9 @@ struct tabView: View {
 //.onChange
 
 /*
-struct tabView_Previews: PreviewProvider {
+struct MainTabView_Previews: PreviewProvider {
     static var previews: some View {
-        tabView()
+        MainTabView()
     }
 }
 */

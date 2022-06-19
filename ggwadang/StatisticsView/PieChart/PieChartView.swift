@@ -9,9 +9,9 @@ import SwiftUI
 
 
 struct PieChartView: View {
-    @Binding var testtest: Int
+    @Binding var testtest: Double
     @Binding var stringtestt: String
-    public let values: [Int]
+    public let values: [Double]
     public var colors: [[Color]]
     public var innerRadiusFraction: CGFloat
     public let category: [String] = ["빵","과자류","견과류, 떡","음료","유가공품","아이스크림","초콜릿","캔디, 젤리","캐러멜, 양갱"]
@@ -25,7 +25,7 @@ struct PieChartView: View {
         var tempSlices: [PieSliceData] = []
         
         for (i, value) in values.enumerated() {
-            let degrees: Double = Double(value) * 360 / Double(sum)
+            let degrees: Double = value * 360 / Double(sum)
             tempSlices.append(PieSliceData(startAngle: Angle(degrees: endDeg), endAngle: Angle(degrees: endDeg + degrees), color: colors[i]))
             //LinearGradient(gradient: Gradient(colors: [.white, .black]), startPoint: .top, endPoint: .bottom
             //다음 파이 조각의 시작 각도를 구하기 위한 작업

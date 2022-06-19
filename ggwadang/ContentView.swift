@@ -25,7 +25,7 @@ struct ContentView: View {
             EnterUserDataView(isFirstDataInput: $isFirstDataInput)
         } else {
             // 실행한 적이 있었다면 메인 페이지로 이동.
-            tabView(records: store.records)
+            MainTabView(records: store.records)
         }
     }
 }
