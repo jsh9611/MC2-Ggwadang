@@ -13,7 +13,7 @@ struct SegView: View {
     //@EnvironmentObject var store: RecordStore
     @State var testtest: Double = 0.0
     @State var stringTest: String = ""
-    @State var shibal: Bool = false
+    @State var changeStatus: Bool = false
     let records : [Record]
     
     //SegView에서 객체 생성 후, SegPicker에서 해당 모델 관찰
@@ -98,7 +98,7 @@ struct SegView: View {
         .onAppear{
             TestModel.getTotalSugar(section: TestModel.selection, records: records)
         }
-        .onChange(of: shibal){yabal in
+        .onChange(of: changeStatus){changed in
             TestModel.getTotalSugar(section: TestModel.selection, records: records)
         }
     }
