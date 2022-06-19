@@ -17,14 +17,11 @@ let backgroundRed = LinearGradient(gradient: Gradient(colors: [Color("tangerine"
 let backgroundBlack = LinearGradient(gradient: Gradient(colors: [Color("gray"), Color("black")]), startPoint: .top, endPoint: .bottom)
 
 struct MainView: View {
-    // TODO: RecordDB로부터 오늘 먹은 레코드 불러오기 -> 섭취량 계산
-    // TODO: AppStorage에 저장된 사용자 목표 섭취량 가져오기
-    @State private var todaySugarValue: Double = 18
-//    @State private var sugarGoalValue: Double = 40
-    @State var progressValue: Double =  0.9
+    @State private var todaySugarValue: Double = 0
+    @State var progressValue: Double =  0
     @AppStorage(StorageKeys.sugar.rawValue) private var sugar : Double = UserDefaults.standard.double(forKey: "sugar")  // 유저의 설탕값
     let realm = try! Realm()
-    //public var testNumber: Float = 9.9
+
     static var dateFormat: DateFormatter {
         let formatter = DateFormatter()
         formatter.dateFormat = "YYYY년 M월 d일"
@@ -35,57 +32,54 @@ struct MainView: View {
         ZStack{
             LinearGradient(gradient: Gradient(colors: [Color(bgTop(number: progressValue)), Color(bgBottom(number: progressValue))]), startPoint: .top, endPoint: .bottom)
                 .edgesIgnoringSafeArea(.all)
-        VStack{
-            HStack {
-                Text(" ")
-                    .frame(width: 25, height: 25)
-                    .frame(maxWidth: .infinity, alignment: .trailing)
-                    .navigationBarTitleDisplayMode(.inline)
-                    .navigationBarTitle("", displayMode: .inline)
-                    .toolbar {
-                        ToolbarItem(placement: .principal) {
-                            Text("\(today, formatter: MainView.dateFormat)").font(.headline)
-                                .foregroundColor(.white)
-                        }
-                        ToolbarItem(placement: .navigationBarTrailing) {
-                            NavigationLink(destination: SettingListView()) {
-                                Image(systemName: "gearshape")
-                                    .foregroundColor(.white)
-                            }
-                        }
+            VStack{
+                ProgressCircleView(progress: self.$progressValue)
+                Spacer().frame(maxWidth: .infinity, alignment: .trailing)
+            }
+            .padding(.top, 20)
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarTitle("", displayMode: .inline)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text("\(today, formatter: MainView.dateFormat)").font(.headline)
+                        .foregroundColor(.white)
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    NavigationLink(destination: SettingListView()) {
+                        Image(systemName: "gearshape")
+                            .foregroundColor(.white)
                     }
+                }
             }
-            ProgressCircleView(progress: self.$progressValue)
-            Spacer()
-        }
-//         오늘의 당(음식 추가한 경우) 진행값 갱신
-        .onChange(of: $todaySugarValue.wrappedValue) { _ in
-            progressValue = Double(todaySugarValue) / Double(sugar)
-        }
-        // 유저 설탕 설정값 바뀐 경우 진행값 갱신
-        .onChange(of: $sugar.wrappedValue) { _ in
-            progressValue = Double(todaySugarValue) / sugar
-        }
-//        .onChange(of: ) { _ in
-//            progressValue = Double(todaySugarValue) / sugar
-//        }
-        // 뷰가 나타날 때 진행값 갱신
-        .onAppear {
-            let userRecords = realm.objects(RecordDB.self).filter("date == '\(yyyyMMdd(date: Date()))'")
-            var sum : Double = 0
-            for temp in userRecords {
-                sum += temp.calculatedSugar
+            //         오늘의 당(음식 추가한 경우) 진행값 갱신
+            .onChange(of: $todaySugarValue.wrappedValue) { _ in
+                progressValue = Double(todaySugarValue) / Double(sugar)
             }
-            todaySugarValue = sum
-            progressValue = Double(todaySugarValue) / sugar
+            // 유저 설탕 설정값 바뀐 경우 진행값 갱신
+            .onChange(of: $sugar.wrappedValue) { _ in
+                progressValue = Double(todaySugarValue) / sugar
+            }
+            //        .onChange(of: ) { _ in
+            //            progressValue = Double(todaySugarValue) / sugar
+            //        }
+            // 뷰가 나타날 때 진행값 갱신
+            .onAppear {
+                let userRecords = realm.objects(RecordDB.self).filter("date == '\(yyyyMMdd(date: Date()))'")
+                var sum : Double = 0
+                for temp in userRecords {
+                    sum += temp.calculatedSugar
+                }
+                todaySugarValue = sum
+                progressValue = Double(todaySugarValue) / sugar
+            }
+            
+            //        .onChange(of: $progressValue.wrappedValue) { _ in
+            //                .background(backGround(number: progressValue))
+            //        }
+            //        .background(backGround(number: progressValue))
         }
-
-//        .onChange(of: $progressValue.wrappedValue) { _ in
-//                .background(backGround(number: progressValue))
-//        }
-//        .background(backGround(number: progressValue))
     }
-    }//end of Body()
+    //end of Body()
     
     //Func backGround()
     func backGround(number: Double) -> LinearGradient {

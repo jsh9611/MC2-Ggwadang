@@ -83,7 +83,7 @@ struct gridModifier: ViewModifier {
             .frame(width: 110, height: 60)
             .background(RoundedRectangle(cornerRadius: 15)
                 .fill(Color.white)
-                .shadow(color: Color.black.opacity(0.1), radius: 5, y: 3))
+                .shadow(color: Color.gray.opacity(0.15), radius: 20, y: 3))
     }
     
 }

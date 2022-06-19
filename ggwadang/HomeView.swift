@@ -13,7 +13,7 @@ struct HomeView: View {
             VStack {
                 ZStack(alignment: .bottom) {
                     MainView()
-                    StatusView().padding(.bottom, 30)
+                    StatusView().padding(.bottom, 20)
                 }
                 MainListView()
             }

@@ -14,7 +14,7 @@ struct LargeCategoryView: View {
     @State var medium_isSelected = ""
     @State var small_isSelected = ""
     
-    let largeArray = [["과자","🍪"], ["떡·견과류","🍡"], ["베이커리","🥐"], ["아이스크림","🍦"], ["유가공품","🥛"], ["음료","🥤"], ["초콜릿","🍫"], ["캐러멜, 양갱","🍮"], ["캔디, 젤리","🍭"]]
+    let largeArray = [["과자","🍪"], ["떡·견과류","🍡"], ["베이커리","🥐"], ["아이스크림","🍦"], ["유가공품","🥛"], ["음료","🥤"], ["초콜릿","🍫"], ["캐러멜·양갱","🍮"], ["캔디·젤리","🍭"]]
     var gridItemLayout = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     
     var body: some View {
@@ -55,7 +55,7 @@ struct navViewModifier: ViewModifier {
             .frame(width: 110, height: 150)
             .background(RoundedRectangle(cornerRadius: 15)
                 .fill(Color.white)
-                .shadow(color: Color.black.opacity(0.1), radius: 5, y: 3))
+                .shadow(color: Color.gray.opacity(0.15), radius: 20, y: 3))
     }
     
 }
@@ -67,6 +67,10 @@ struct dismissButton: View {
             isPresented.toggle()
         } label: {
             Image(systemName: "xmark")
-        }.frame(maxWidth: .infinity, alignment: .trailing).padding(.trailing, 20)
+                .resizable()
+                .frame(width: 17, height: 17)
+        }
+        .padding([.top, .trailing], 10)
+        .frame(maxWidth: .infinity, alignment: .trailing)
     }
 }

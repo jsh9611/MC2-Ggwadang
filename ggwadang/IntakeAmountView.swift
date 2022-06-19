@@ -20,29 +20,19 @@ struct IntakeAmountView: View {
     @Binding var small_isSelected: String
     
     //MARK: 이모지 딕셔너리 정의 - 대분류에 맞게 이모지 보여주기
-    let categoryEmoG = ["과자":"🍪", "떡·견과류":"🍡", "베이커리":"🥐", "아이스크림":"🍦", "유가공품":"🥛", "음료":"🥤", "초콜릿":"🍫", "캐러멜, 양갱":"🍮", "캔디, 젤리":"🍭"]
+    let categoryEmoG = ["과자":"🍪", "떡·견과류":"🍡", "베이커리":"🥐", "아이스크림":"🍦", "유가공품":"🥛", "음료":"🥤", "초콜릿":"🍫", "캐러멜·양갱":"🍮", "캔디·젤리":"🍭"]
     
     let servingCategory = ["1/3컵", "1/2컵", "1컵", "2컵", "3컵", "직접입력"]
     let categoryRate : [Double] = [0.333, 0.5, 1, 2, 3, -1] // 계산하기 쉽도록 테이블 작성
     @State var isSelected = [false, false, false, false, false, false]
     @State private var showingAlert = false // 0 g/ml 입력하면 뜨게 하는 용도
     
-    //    @State var isSelected = [false, false, false, false, false]
     @State var directTyping = false
-    
-    @State var foodAmount : Double = 0  // 섭취하는 음식의 총량
     @State var buttonState : Int = 0    // 현재 선택한 카테고리명
     
-    // TODO: 데이터베이스로부터 1회제공량 불러오기
-//    var food: Food
-    //@State var foodAmount: String = "200"
-    var servingSize = 190.0
-    
-    // TODO: 데이터베이스로부터 제품 1g당 당류 불러오기 (=sugarAmount)
-    @State var sugarAmount : Double = 0.47
-    
-    // TODO: 데이터베이스로부터 용량 불러오기
-    let unit = ""
+    @State var foodAmount : Double = 0  // 섭취하는 음식의 총량
+    @State var calculatedSugar: Double = 0
+    @State var unit = ""
         
     var gridItemLayout = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     
@@ -70,7 +60,7 @@ struct IntakeAmountView: View {
                         VStack {
                             VStack {
                                 HStack {
-                                    Text("\(medium_isSelected) < \(small_isSelected)") // 최대 11글자
+                                    Text("\(medium_isSelected) > \(small_isSelected)") // 최대 11글자
                                         .font(.title2)
                                         .fontWeight(.bold)
                                         .lineLimit(1)
@@ -88,12 +78,11 @@ struct IntakeAmountView: View {
                                                 RoundedRectangle(cornerRadius: 15)
                                                     .fill(Color.white)
                                                     .opacity(0.1)
-                                                    .shadow(color: .black.opacity(0.2), radius: 10, x: 10, y: 10)
-                                                    .shadow(color: .white.opacity(0.7), radius: 10, x: -5, y: -5)
+                                                    .shadow(color: .black.opacity(0.15), radius: 20, y: 3)
                                                 
                                                 HStack {
                                                     
-                                                    TextField("200",
+                                                    TextField("\(foo.servingSize)",
                                                               value: $foodAmount,
                                                               formatter: formatter)
                                                     .frame(height: 60)
@@ -102,7 +91,7 @@ struct IntakeAmountView: View {
                                                     .keyboardType(.numberPad)
                                                     .font(.title2)
                                                     
-                                                    Text("ml")
+                                                    Text("\(foo.unit)")
                                                         .font(.title2)
                                                         .fontWeight(.bold)
                                                         .padding(.trailing, 5)
@@ -120,7 +109,6 @@ struct IntakeAmountView: View {
                                     Text("\(categoryEmoG[foo.large] ?? "🍪")")
                                         .modifier(FittingFontSizeModifier()) // .resizable()처럼 사용하기 위해 추가함
                                         .frame(width: 100, height: 100)
-                                        .padding(.trailing, 20)
                                 }
                                 
                             }
@@ -154,8 +142,7 @@ struct IntakeAmountView: View {
                         .frame(width: 110, height: 60)
                         .background(RoundedRectangle(cornerRadius: 15)
                             .fill(self.isSelected[num] ? Color(hex: 0x6CADA5) : Color.white)
-                            .shadow(color: .black.opacity(0.2), radius: 10, x: 10, y: 10)
-                            .shadow(color: .white.opacity(0.7), radius: 10, x: -5, y: -5)
+                            .shadow(color: .gray.opacity(0.15), radius: 20, y: 3)
                                     
                         )
                     }
@@ -178,8 +165,7 @@ struct IntakeAmountView: View {
                     .frame(width: 110, height: 60)
                     .background(RoundedRectangle(cornerRadius: 15)
                         .fill(Color.white)
-                        .shadow(color: .black.opacity(0.2), radius: 10, x: 10, y: 10)
-                        .shadow(color: .white.opacity(0.7), radius: 10, x: -5, y: -5))
+                        .shadow(color: .gray.opacity(0.15), radius: 20, y: 3))
                     .overlay(RoundedRectangle(cornerRadius: 15)
                         .stroke(self.isFocused ? Color(hex: 0x6CADA5) : Color.clear, lineWidth: 2))
                     
@@ -190,21 +176,18 @@ struct IntakeAmountView: View {
                 .onAppear {
                     isSelected[buttonState].toggle()
                     foodAmount = Double(String(format: "%.0f", categoryRate[buttonState] * (Double(foo.servingSize) ?? 0) )) ?? 0
+                    unit = foo.unit
                 }
                 
                 Spacer()
                 Button {
-                    print(foodAmount, "ml 입력받았어요")
-                    print(foodAmount*(Double(foo.sugarPerGram) ?? 0), "g 설탕을 저장했어요")
-                    
                     if foodAmount <= 0 || foodAmount > 10000 {
                         showingAlert.toggle()
                     } else {
-                        sugarAmount = (Double(foo.sugarPerGram) ?? 0)
+                        calculatedSugar = (Double(foo.sugarPerGram)! * foodAmount )
                         saveRecord()
                         isPresented.toggle()
                     }
-
                 } label: {
                     Text("추가하기")
                         .frame(width: (UIScreen.main.bounds.width)*0.9, height: 56)
@@ -213,19 +196,15 @@ struct IntakeAmountView: View {
                 .background(RoundedRectangle(cornerRadius: 30).fill(Color(hex: 0x6CADA5)))
                 .padding(.vertical, 20)
                 .alert("범위 초과", isPresented: $showingAlert) {
-                    Button("넹~~") {
-                        print("힝")
+                    Button("OK") {
                         isFocused.toggle()
-                        foodAmount = servingSize
+                        foodAmount = Double(foo.servingSize)!
                     }
                 } message: {
-                    Text("0~10000 사이의 값을 입력해주세용")
+                    Text("0~10000 사이의 값을 입력해주세요.")
                 }
             }
             .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-    //                Text(small_isSelected)
-                }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action:{
                         isPresented.toggle()
@@ -233,9 +212,7 @@ struct IntakeAmountView: View {
                 }
             }
         }
-            
-        }
-        
+    }
 }
 
 extension IntakeAmountView {
@@ -245,15 +222,8 @@ extension IntakeAmountView {
             large: large_isSelected,
             medium: medium_isSelected,
             small: small_isSelected,
-            calculatedSugar: foodAmount*sugarAmount,
+            calculatedSugar: calculatedSugar,
             foodAmount: foodAmount,
             unit: unit)
-    }
-    
-    func dateFormatter(date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyyMMdd"
-        let converted = formatter.string(from: date)
-        return converted
     }
 }
