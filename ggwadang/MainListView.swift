@@ -26,12 +26,12 @@ struct MainListView: View {
                 if todayArray.count >= 1 {
                     HStack {
                         VStack (alignment: .leading){
-                            Text("\(todayArray[0][0])")
-                            Text("\((String(format: "%.1f",(todayArray[0][1] as NSString).doubleValue)))\(todayArray[0][2])")
+                            Text("\(todayArray[todayArray.count-1][0])")
+                            Text("\((String(format: "%1.f",(todayArray[todayArray.count-1][1] as NSString).doubleValue)))\(todayArray[todayArray.count-1][2])")
                                 .font(.system(size:13))
                         }
                         Spacer()
-                        Text("당류 \((String(format: "%.1f",(todayArray[0][3] as NSString).doubleValue)))g")
+                        Text("당류 \((String(format: "%.1f",(todayArray[todayArray.count-1][3] as NSString).doubleValue)))g")
                     }
                     .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
                 }
@@ -44,12 +44,12 @@ struct MainListView: View {
                 if todayArray.count >= 2 {
                     HStack {
                         VStack (alignment: .leading){
-                            Text("\(todayArray[1][0])")
-                            Text("\((String(format: "%.1f",(todayArray[1][1] as NSString).doubleValue)))\(todayArray[1][2])")
+                            Text("\(todayArray[todayArray.count-2][0])")
+                            Text("\((String(format: "%1.f",(todayArray[todayArray.count-2][1] as NSString).doubleValue)))\(todayArray[todayArray.count-2][2])")
                                 .font(.system(size:13))
                         }
                         Spacer()
-                        Text("당류 \((String(format: "%.1f",(todayArray[1][3] as NSString).doubleValue)))g")
+                        Text("당류 \((String(format: "%.1f",(todayArray[todayArray.count-2][3] as NSString).doubleValue)))g")
                     }
                     .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
                     
@@ -61,8 +61,6 @@ struct MainListView: View {
         }
         
         .onAppear {
-            // 안좋은 코드
-            // 리펙토링이 필요합니다ㅠㅠ
             todayArray = []
             let temp = store.records.filter{ $0.date == "\(dateFormatter(date: today))" }
             for tem in temp {

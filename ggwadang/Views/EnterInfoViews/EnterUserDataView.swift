@@ -19,11 +19,10 @@ struct EnterUserDataView: View {
     
     var body: some View {
         NavigationView {
-            
             VStack (alignment: .leading){
                 Spacer()
                 // 닉네임 입력
-                Text("닉네임을 입력하세요.")
+                Text("닉네임을 입력해주세요.")
                     .bold()
                     .padding(.top, 20)
                     .padding(.bottom, 5)
@@ -52,10 +51,10 @@ struct EnterUserDataView: View {
                 .padding(.bottom, 40)
                 
                 // 나이 선택
-                Text("나이를 선택하세요.")
+                Text("나이를 선택해주세요.")
                     .bold()
                     .padding(.bottom, 5)
-                Picker("나이를 선택하셈",selection: $age){
+                Picker("나이를 선택해주세요.",selection: $age){
                     // 1살부터 75살까지
                     ForEach(0 ..< 76){
                         if $0 == 75 {
@@ -78,9 +77,7 @@ struct EnterUserDataView: View {
                     .buttonStyle(PlainButtonStyle())
                     Spacer()
                 }
-                
             }
-            .ignoresSafeArea(.keyboard)
             .frame(width: 350)
             .navigationBarHidden(true)
             .padding(.bottom, 20)
@@ -98,68 +95,70 @@ struct EnterUserDataView: View {
             sugar = sugarGram()
         }
     }
+}
+
+// 나이와 성별에 따른 kcal를 통해 권장 섭취 당을 구하는 함수
+func sugarGram() -> Double {
+    @AppStorage(StorageKeys.gender.rawValue) var gender: Int = UserDefaults.standard.integer(forKey: "gender") // 유저의 성별(남:0, 여:1)
+    @AppStorage(StorageKeys.age.rawValue) var age: Int =  20 // 유저의 만나이(기본값 20)
     
-    // 나이와 성별에 따른 kcal를 통해 권장 섭취 당을 구하는 함수
-    func sugarGram() -> Double {
-        var kcal : Double = 0
-        let realAge = age + 1
-        if gender == 0 {    // 남자인 경우
-            switch realAge {
-            case 1...2:     // 1~2 세
-                kcal = 900
-            case 3...5:     // 3~5 세
-                kcal = 1400
-            case 6...8:
-                kcal = 1700
-            case 9...11:
-                kcal = 2000
-            case 12...14:
-                kcal = 2500
-            case 15...18:
-                kcal = 2700
-            case 19...29:
-                kcal = 2600
-            case 30...49:
-                kcal = 2500
-            case 50...64:
-                kcal = 2200
-            case 65...74:
-                kcal = 2000
-            case 75... :
-                kcal = 1900
-            default:
-                kcal = 0
-            }
-        } else if gender == 1 { // 여자인 경우
-            switch realAge {
-            case 1...2:
-                kcal = 900
-            case 3...5:
-                kcal = 1400
-            case 6...8:
-                kcal = 1500
-            case 9...11:
-                kcal = 1800
-            case 12...14:
-                kcal = 2000
-            case 15...18:
-                kcal = 2000
-            case 19...29:
-                kcal = 2000
-            case 30...49:
-                kcal = 1900
-            case 50...64:
-                kcal = 1700
-            case 65...74:
-                kcal = 1600
-            case 75... :
-                kcal = 1500
-            default:
-                kcal = 0
-            }
+    var kcal : Double = 0
+    let realAge = age + 1
+    if gender == 0 {    // 남자인 경우
+        switch realAge {
+        case 1...2:     // 1~2 세
+            kcal = 900
+        case 3...5:     // 3~5 세
+            kcal = 1400
+        case 6...8:
+            kcal = 1700
+        case 9...11:
+            kcal = 2000
+        case 12...14:
+            kcal = 2500
+        case 15...18:
+            kcal = 2700
+        case 19...29:
+            kcal = 2600
+        case 30...49:
+            kcal = 2500
+        case 50...64:
+            kcal = 2200
+        case 65...74:
+            kcal = 2000
+        case 75... :
+            kcal = 1900
+        default:
+            kcal = 0
         }
-        // 하루 필요 추정량(kcal)의 10%에 대한 당(g)을 계산
-        return kcal / 40
+    } else if gender == 1 { // 여자인 경우
+        switch realAge {
+        case 1...2:
+            kcal = 900
+        case 3...5:
+            kcal = 1400
+        case 6...8:
+            kcal = 1500
+        case 9...11:
+            kcal = 1800
+        case 12...14:
+            kcal = 2000
+        case 15...18:
+            kcal = 2000
+        case 19...29:
+            kcal = 2000
+        case 30...49:
+            kcal = 1900
+        case 50...64:
+            kcal = 1700
+        case 65...74:
+            kcal = 1600
+        case 75... :
+            kcal = 1500
+        default:
+            kcal = 0
+        }
     }
-    
+    // 하루 필요 추정량(kcal)의 10%에 대한 당(g)을 계산
+    return kcal / 40
 }
