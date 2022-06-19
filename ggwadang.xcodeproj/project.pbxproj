@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		113BA14F285E5F2B008A5594 /* SettingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113BA14E285E5F2B008A5594 /* SettingListView.swift */; };
+		113BA151285E5FCA008A5594 /* SettingUserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113BA150285E5FCA008A5594 /* SettingUserInfoView.swift */; };
+		113BA153285E603E008A5594 /* SettingUserSugarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113BA152285E603E008A5594 /* SettingUserSugarView.swift */; };
 		11F246FB2857222C00DA595B /* GuideTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F246FA2857222C00DA595B /* GuideTabView.swift */; };
 		11F246FF2857234300DA595B /* GuidePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F246FE2857234300DA595B /* GuidePageView.swift */; };
 		11F247012857235700DA595B /* GuideLastPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F247002857235700DA595B /* GuideLastPageView.swift */; };
@@ -57,6 +60,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		113BA14E285E5F2B008A5594 /* SettingListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingListView.swift; sourceTree = "<group>"; };
+		113BA150285E5FCA008A5594 /* SettingUserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingUserInfoView.swift; sourceTree = "<group>"; };
+		113BA152285E603E008A5594 /* SettingUserSugarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingUserSugarView.swift; sourceTree = "<group>"; };
 		11F246FA2857222C00DA595B /* GuideTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideTabView.swift; sourceTree = "<group>"; };
 		11F246FE2857234300DA595B /* GuidePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidePageView.swift; sourceTree = "<group>"; };
 		11F247002857235700DA595B /* GuideLastPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideLastPageView.swift; sourceTree = "<group>"; };
@@ -209,6 +215,9 @@
 				4D059C66285E3C8E009E12E1 /* MainView.swift */,
 				4D059C68285E3D0B009E12E1 /* ProcessCircleView.swift */,
 				4D059C6A285E3D22009E12E1 /* HomeView.swift */,
+				113BA14E285E5F2B008A5594 /* SettingListView.swift */,
+				113BA150285E5FCA008A5594 /* SettingUserInfoView.swift */,
+				113BA152285E603E008A5594 /* SettingUserSugarView.swift */,
 				4D727601284CEE5800F4DCC6 /* Assets.xcassets */,
 				4D727603284CEE5800F4DCC6 /* Preview Content */,
 			);
@@ -390,6 +399,7 @@
 				11F24708285725A000DA595B /* EnterUserDataView.swift in Sources */,
 				D43636A7285E1F9B00E7827D /* PieSliceView.swift in Sources */,
 				D43636A5285E1F9600E7827D /* PieSliceData.swift in Sources */,
+				113BA153285E603E008A5594 /* SettingUserSugarView.swift in Sources */,
 				D436369E285E1F3000E7827D /* BarChartView.swift in Sources */,
 				11F247012857235700DA595B /* GuideLastPageView.swift in Sources */,
 				4D059C69285E3D0B009E12E1 /* ProcessCircleView.swift in Sources */,
@@ -397,8 +407,10 @@
 				11F246FB2857222C00DA595B /* GuideTabView.swift in Sources */,
 				4D059C67285E3C8E009E12E1 /* MainView.swift in Sources */,
 				11F2471128572E2D00DA595B /* EnterSugarView.swift in Sources */,
+				113BA14F285E5F2B008A5594 /* SettingListView.swift in Sources */,
 				11F246FF2857234300DA595B /* GuidePageView.swift in Sources */,
 				D43636AD285E1FB200E7827D /* SegmentedPicker.swift in Sources */,
+				113BA151285E5FCA008A5594 /* SettingUserInfoView.swift in Sources */,
 				4DB1F29A285DAD9200BA7465 /* FoodStore.swift in Sources */,
 				4D059C65285E3C85009E12E1 /* MainListView.swift in Sources */,
 				D43636AC285E1FB200E7827D /* SizeAwareViewModifier.swift in Sources */,

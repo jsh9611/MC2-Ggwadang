@@ -19,7 +19,8 @@ struct IntakeAmountView: View {
     @Binding var medium_isSelected: String
     @Binding var small_isSelected: String
     
-    
+    //MARK: 이모지 딕셔너리 정의 - 대분류에 맞게 이모지 보여주기
+    let categoryEmoG = ["과자":"🍪", "떡·견과류":"🍡", "베이커리":"🥐", "아이스크림":"🍦", "유가공품":"🥛", "음료":"🥤", "초콜릿":"🍫", "캐러멜, 양갱":"🍮", "캔디, 젤리":"🍭"]
     
     let servingCategory = ["1/3컵", "1/2컵", "1컵", "2컵", "3컵", "직접입력"]
     let categoryRate : [Double] = [0.333, 0.5, 1, 2, 3, -1] // 계산하기 쉽도록 테이블 작성
@@ -116,7 +117,7 @@ struct IntakeAmountView: View {
                                     }
                                     
                                     Spacer()
-                                    Text("🍪")
+                                    Text("\(categoryEmoG[foo.large] ?? "🍪")")
                                         .modifier(FittingFontSizeModifier()) // .resizable()처럼 사용하기 위해 추가함
                                         .frame(width: 100, height: 100)
                                         .padding(.trailing, 20)
