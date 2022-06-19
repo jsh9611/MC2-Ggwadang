@@ -41,7 +41,7 @@ struct RecordRow: View {
         HStack {
             VStack (alignment: .leading){
                 Text("\(record.small)")
-                Text("\(String(format: "%.1f", record.foodAmount))\(record.unit)")
+                Text("\(String(format: "%1.f", record.foodAmount))\(record.unit)")
                     .font(.system(size:13))
             }
             Spacer()

@@ -23,8 +23,11 @@ struct SettingListView: View {
                 Text("목표 섭취량 변경")
             }
             Toggle("도움말 다시보기", isOn: $isFirstLaunching)
-            Toggle("유저정보 테스트 끝나면 이거 삭제ㄱ", isOn: $isFirstDataInput)
-            
+            //Toggle("유저정보 테스트 끝나면 이거 삭제ㄱ", isOn: $isFirstDataInput)
+                .listRowBackground(Color.clear)
+        }
+        .onAppear{
+            UITableView.appearance().backgroundColor = UIColor.white
         }
         .navigationBarTitle("Settings")
     }
