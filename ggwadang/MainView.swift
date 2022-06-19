@@ -19,6 +19,7 @@ let backgroundBlack = LinearGradient(gradient: Gradient(colors: [Color("gray"), 
 struct MainView: View {
     @State private var todaySugarValue: Double = 0
     @State var progressValue: Double =  0
+    @Binding var isPresented: Bool
     @AppStorage(StorageKeys.sugar.rawValue) private var sugar : Double = UserDefaults.standard.double(forKey: "sugar")  // 유저의 설탕값
     let realm = try! Realm()
 
@@ -51,18 +52,19 @@ struct MainView: View {
                     }
                 }
             }
-            //         오늘의 당(음식 추가한 경우) 진행값 갱신
-            .onChange(of: $todaySugarValue.wrappedValue) { _ in
-                progressValue = Double(todaySugarValue) / Double(sugar)
-            }
-            // 유저 설탕 설정값 바뀐 경우 진행값 갱신
-            .onChange(of: $sugar.wrappedValue) { _ in
+            // 시트를 닫으면 데이터 값 갱신
+            .onChange(of: isPresented) { sheetIsOn in
+                if sheetIsOn { return }
+                
+                let userRecords = realm.objects(RecordDB.self).filter("date == '\(yyyyMMdd(date: Date()))'")
+                var sum : Double = 0
+                for temp in userRecords {
+                    sum += temp.calculatedSugar
+                }
+                todaySugarValue = sum
                 progressValue = Double(todaySugarValue) / sugar
             }
-            //        .onChange(of: ) { _ in
-            //            progressValue = Double(todaySugarValue) / sugar
-            //        }
-            // 뷰가 나타날 때 진행값 갱신
+
             .onAppear {
                 let userRecords = realm.objects(RecordDB.self).filter("date == '\(yyyyMMdd(date: Date()))'")
                 var sum : Double = 0
@@ -72,11 +74,6 @@ struct MainView: View {
                 todaySugarValue = sum
                 progressValue = Double(todaySugarValue) / sugar
             }
-            
-            //        .onChange(of: $progressValue.wrappedValue) { _ in
-            //                .background(backGround(number: progressValue))
-            //        }
-            //        .background(backGround(number: progressValue))
         }
     }
     //end of Body()
@@ -125,8 +122,8 @@ struct MainView: View {
         return converted
     }
 }
-struct MainView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainView()
-    }
-}
+//struct MainView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MainView()
+//    }
+//}

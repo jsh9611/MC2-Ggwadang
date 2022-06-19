@@ -6,11 +6,13 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 struct MainListView: View {
     @EnvironmentObject var store: RecordStore
     @State var todayArray: [[String]] = []
-    
+    @State private var todaySugarValue: Double = 0
+    @Binding var isPresented: Bool
     var body: some View {
         VStack {
             HStack {
@@ -59,6 +61,14 @@ struct MainListView: View {
                 }
             }
         }
+        .onChange(of: isPresented) { sheetIsOn in
+            if sheetIsOn { return }
+            todayArray = []
+            let temp = store.records.filter{ $0.date == "\(dateFormatter(date: today))" }
+            for tem in temp {
+                todayArray.append([tem.small,String(tem.foodAmount),tem.unit,String(tem.calculatedSugar)])
+            }
+        }
         
         .onAppear {
             todayArray = []
@@ -68,6 +78,12 @@ struct MainListView: View {
             }
         }
         .padding(EdgeInsets(top: 10, leading: 20, bottom: 20, trailing: 20))
+    }
+    func yyyyMMdd(date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyyMMdd"
+        let converted = formatter.string(from: date)
+        return converted
     }
 }
 

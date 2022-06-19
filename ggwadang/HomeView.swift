@@ -8,21 +8,22 @@
 import SwiftUI
 
 struct HomeView: View {
+    @Binding var isPresented: Bool
     var body: some View {
         NavigationView {
             VStack {
                 ZStack(alignment: .bottom) {
-                    MainView()
-                    StatusView().padding(.bottom, 20)
+                    MainView(isPresented: $isPresented)
+                    StatusView(isPresented: $isPresented).padding(.bottom, 20)
                 }
-                MainListView()
+                MainListView(isPresented: $isPresented)
             }
         }
     }
 }
 
-struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeView()
-    }
-}
+//struct HomeView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        HomeView()
+//    }
+//}
