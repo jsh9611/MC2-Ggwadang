@@ -32,56 +32,54 @@ struct MainView: View {
         ZStack{
             LinearGradient(gradient: Gradient(colors: [Color(bgTop(number: progressValue)), Color(bgBottom(number: progressValue))]), startPoint: .top, endPoint: .bottom)
                 .edgesIgnoringSafeArea(.all)
-        VStack{
-            HStack {
-                Text(" ")
-                    .frame(maxWidth: .infinity, alignment: .trailing)
-                    .navigationBarTitleDisplayMode(.inline)
-                    .navigationBarTitle("", displayMode: .inline)
-                    .toolbar {
-                        ToolbarItem(placement: .principal) {
-                            Text("\(today, formatter: MainView.dateFormat)").font(.headline)
-                                .foregroundColor(.white)
-                        }
-                        ToolbarItem(placement: .navigationBarTrailing) {
-                            NavigationLink(destination: SettingListView()) {
-                                Image(systemName: "gearshape")
-                                    .foregroundColor(.white)
-                            }
-                        }
+            VStack{
+                ProgressCircleView(progress: self.$progressValue)
+                Spacer().frame(maxWidth: .infinity, alignment: .trailing)
+            }
+            .padding(.top, 20)
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarTitle("", displayMode: .inline)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text("\(today, formatter: MainView.dateFormat)").font(.headline)
+                        .foregroundColor(.white)
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    NavigationLink(destination: SettingListView()) {
+                        Image(systemName: "gearshape")
+                            .foregroundColor(.white)
                     }
+                }
             }
-            ProgressCircleView(progress: self.$progressValue)
-            Spacer()
-        }
-//         오늘의 당(음식 추가한 경우) 진행값 갱신
-        .onChange(of: $todaySugarValue.wrappedValue) { _ in
-            progressValue = Double(todaySugarValue) / Double(sugar)
-        }
-        // 유저 설탕 설정값 바뀐 경우 진행값 갱신
-        .onChange(of: $sugar.wrappedValue) { _ in
-            progressValue = Double(todaySugarValue) / sugar
-        }
-//        .onChange(of: ) { _ in
-//            progressValue = Double(todaySugarValue) / sugar
-//        }
-        // 뷰가 나타날 때 진행값 갱신
-        .onAppear {
-            let userRecords = realm.objects(RecordDB.self).filter("date == '\(yyyyMMdd(date: Date()))'")
-            var sum : Double = 0
-            for temp in userRecords {
-                sum += temp.calculatedSugar
+            //         오늘의 당(음식 추가한 경우) 진행값 갱신
+            .onChange(of: $todaySugarValue.wrappedValue) { _ in
+                progressValue = Double(todaySugarValue) / Double(sugar)
             }
-            todaySugarValue = sum
-            progressValue = Double(todaySugarValue) / sugar
+            // 유저 설탕 설정값 바뀐 경우 진행값 갱신
+            .onChange(of: $sugar.wrappedValue) { _ in
+                progressValue = Double(todaySugarValue) / sugar
+            }
+            //        .onChange(of: ) { _ in
+            //            progressValue = Double(todaySugarValue) / sugar
+            //        }
+            // 뷰가 나타날 때 진행값 갱신
+            .onAppear {
+                let userRecords = realm.objects(RecordDB.self).filter("date == '\(yyyyMMdd(date: Date()))'")
+                var sum : Double = 0
+                for temp in userRecords {
+                    sum += temp.calculatedSugar
+                }
+                todaySugarValue = sum
+                progressValue = Double(todaySugarValue) / sugar
+            }
+            
+            //        .onChange(of: $progressValue.wrappedValue) { _ in
+            //                .background(backGround(number: progressValue))
+            //        }
+            //        .background(backGround(number: progressValue))
         }
-
-//        .onChange(of: $progressValue.wrappedValue) { _ in
-//                .background(backGround(number: progressValue))
-//        }
-//        .background(backGround(number: progressValue))
     }
-    }//end of Body()
+    //end of Body()
     
     //Func backGround()
     func backGround(number: Double) -> LinearGradient {
