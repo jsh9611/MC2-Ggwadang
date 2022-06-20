@@ -67,28 +67,28 @@ class viewModel: ObservableObject{
         for record in records{
             print(record.large)
             switch String(record.large){
+            case "베이커리":
+                bread += record.calculatedSugar
             case "과자":
                 snack += record.calculatedSugar
             case "떡·견과류":
                 nuts += record.calculatedSugar
-            case "베이커리":
-                bread += record.calculatedSugar
-            case "아이스크림":
-                icecream += record.calculatedSugar
-            case "유가공품":
-                dairy += record.calculatedSugar
             case "음료":
                 drinks += record.calculatedSugar
+            case "유가공품":
+                dairy += record.calculatedSugar
+            case "아이스크림":
+                icecream += record.calculatedSugar
             case "초콜릿":
                 chocolate += record.calculatedSugar
-            case "캐러멜·양갱":
-                caramel += record.calculatedSugar
             case "캔디·젤리":
                 candy += record.calculatedSugar
+            case "캐러멜·양갱":
+                caramel += record.calculatedSugar
             default:
                 self.values = [0,0,0,0,0,0,0,0,0]
             }
         }
-        return ([snack,nuts,bread,icecream,dairy,drinks,chocolate,caramel,candy])
+        return ([bread,snack,nuts,drinks,dairy,icecream,chocolate,candy,caramel])
     }
 }
