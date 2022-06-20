@@ -19,10 +19,9 @@ struct IntakeAmountView: View {
     @Binding var medium_isSelected: String
     @Binding var small_isSelected: String
     
-    //MARK: 이모지 딕셔너리 정의 - 대분류에 맞게 이모지 보여주기
     let categoryEmoG = ["과자":"🍪", "떡·견과류":"🍡", "베이커리":"🥐", "아이스크림":"🍦", "유가공품":"🥛", "음료":"🥤", "초콜릿":"🍫", "캐러멜·양갱":"🍮", "캔디·젤리":"🍭"]
     
-    let servingCategory = ["1/3컵", "1/2컵", "1컵", "2컵", "3컵", "직접입력"]
+    let servingCategory = ["1/3", "1/2", "1", "2", "3", "직접입력"]
     let categoryRate : [Double] = [0.333, 0.5, 1, 2, 3, -1] // 계산하기 쉽도록 테이블 작성
     @State var isSelected = [false, false, false, false, false, false]
     @State private var showingAlert = false // 0 g/ml 입력하면 뜨게 하는 용도
@@ -60,7 +59,7 @@ struct IntakeAmountView: View {
                         VStack {
                             VStack {
                                 HStack {
-                                    Text("\(medium_isSelected) > \(small_isSelected)") // 최대 11글자
+                                    Text("\(small_isSelected)") // 최대 11글자
                                         .font(.title2)
                                         .fontWeight(.bold)
                                         .lineLimit(1)
@@ -135,9 +134,12 @@ struct IntakeAmountView: View {
                             // 각 버튼의 배수 x 개당(컵,개,덩어리) 용량 = 선택한 용량
                             foodAmount = Double(String(format: "%.0f", categoryRate[buttonState] * (Double(foo.servingSize) ?? 0) )) ?? 0
                         } label: {
-                            Text("\(servingCategory[num])")
-                                .padding()
-                                .foregroundColor(self.isSelected[num] ? Color.white : Color.black)
+                            HStack {
+                                Text("\(servingCategory[num])")
+                                Text("\(foo.servingUnit)")
+                            }
+                            .padding()
+                            .foregroundColor(self.isSelected[num] ? Color.white : Color.black)
                         }
                         .frame(width: 110, height: 60)
                         .background(RoundedRectangle(cornerRadius: 15)

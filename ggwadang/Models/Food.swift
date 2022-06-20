@@ -15,6 +15,7 @@ struct csvFood: Identifiable {
     var sugarPerGram: String
     var servingSize: String
     var unit: String
+    var servingUnit: String
     
     init (raw: [String]) {
         id = raw[0]
@@ -24,6 +25,7 @@ struct csvFood: Identifiable {
         sugarPerGram = raw[4]
         servingSize = raw[5]
         unit = raw[6]
+        servingUnit = raw[7]
     }
 }
 struct Food: Identifiable {
@@ -34,6 +36,7 @@ struct Food: Identifiable {
     var sugarPerGram: String
     var servingSize: String
     var unit: String
+    var servingUnit: String
     
     init (foodDB: FoodDB) {
         id = foodDB.id
@@ -43,6 +46,7 @@ struct Food: Identifiable {
         sugarPerGram = foodDB.sugarPerGram
         servingSize = foodDB.servingSize
         unit = foodDB.unit
+        servingUnit = foodDB.servingUnit
     }
 }
 
