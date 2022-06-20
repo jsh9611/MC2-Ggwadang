@@ -14,7 +14,7 @@ struct BarChart: View {
     @State var number: Double = 38.034535
     var body: some View {
         HStack (alignment: .bottom, spacing: 20){
-                Text("hello")
+                Text("\n\n아직까지 데이터가 충분하지 않아 표시되지 않습니다.")
             }
         }
     }
