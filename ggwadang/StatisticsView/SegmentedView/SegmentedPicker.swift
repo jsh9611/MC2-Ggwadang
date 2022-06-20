@@ -37,7 +37,7 @@ struct SegmentedPicker: View {
     private static let AnimationDuration: Double = 0.1
     
     private var activeSegmentView: AnyView{
-        // 1. Don't show the active segment until we have initialized the view
+        //Don't show the active segment until we have initialized the view
         let isInitialized: Bool = segmentSize != .zero
         if !isInitialized { return EmptyView().eraseToAnyView() }
         
@@ -91,6 +91,7 @@ struct SegmentedPicker: View {
         let isSelected = ViewModel.selection == index
         return AnyView(
             Text(self.numbers[index])
+                //선택이 된다면?
                 .foregroundColor(isSelected ? SegmentedPicker.SelectedTextColor : SegmentedPicker.TextColor)
                 //텍스트의 라인을 제한할 때 사용함(1줄로 표기해야하므로 1로 사용함)
                 .lineLimit(1)

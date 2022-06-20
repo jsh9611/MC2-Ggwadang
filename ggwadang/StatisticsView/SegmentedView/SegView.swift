@@ -45,17 +45,17 @@ struct SegView: View {
                     VStack(alignment:.leading){
                         Text("섭취한 당류")
                             .font(.callout)
-                        Text("  \(testtest,specifier: "%.1f")g")
+                        Text("  \(TestModel.dataPoints[0],specifier: "%.1f")g")
                             .font(.system(size: 28,weight: .bold))
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(EdgeInsets(top: 20, leading: 10, bottom: -20, trailing: 0))
+                    .padding(EdgeInsets(top: 20, leading: 10, bottom: 0, trailing: 0))
                 
-                    BarChart()
+                    BarChart(dataPoints: TestModel.dataPoints)
                         .frame(maxWidth: .infinity)
-                        .border(Color.blue)
+                        
                 }
-                .border(Color.blue)
+                
                 //End of BarChart
                 
                 //PieChart Section Start
@@ -89,7 +89,7 @@ struct SegView: View {
                     .scaledToFit()
                     .padding(EdgeInsets(top: 0, leading: 10, bottom: -100, trailing: 0))
                 }
-                .border(Color.red)
+                
                 //End of PieChart Section
             }
             //End of First VStack View -> Rendering Whole View

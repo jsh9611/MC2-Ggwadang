@@ -45,7 +45,7 @@
 		4DB1F296285DAD5900BA7465 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB1F295285DAD5900BA7465 /* Food.swift */; };
 		4DB1F298285DAD8600BA7465 /* FoodDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB1F297285DAD8600BA7465 /* FoodDB.swift */; };
 		4DB1F29A285DAD9200BA7465 /* FoodStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB1F299285DAD9200BA7465 /* FoodStore.swift */; };
-		D436369C285E1F2800E7827D /* BarChartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D436369B285E1F2800E7827D /* BarChartModel.swift */; };
+		D436369C285E1F2800E7827D /* BarStickView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D436369B285E1F2800E7827D /* BarStickView.swift */; };
 		D436369E285E1F3000E7827D /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D436369D285E1F3000E7827D /* BarChartView.swift */; };
 		D43636A0285E1F6000E7827D /* BarChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = D436369F285E1F6000E7827D /* BarChart.swift */; };
 		D43636A3285E1F9000E7827D /* PieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43636A2285E1F9000E7827D /* PieChartView.swift */; };
@@ -96,7 +96,7 @@
 		4DB1F295285DAD5900BA7465 /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 		4DB1F297285DAD8600BA7465 /* FoodDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDB.swift; sourceTree = "<group>"; };
 		4DB1F299285DAD9200BA7465 /* FoodStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodStore.swift; sourceTree = "<group>"; };
-		D436369B285E1F2800E7827D /* BarChartModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartModel.swift; sourceTree = "<group>"; };
+		D436369B285E1F2800E7827D /* BarStickView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarStickView.swift; sourceTree = "<group>"; };
 		D436369D285E1F3000E7827D /* BarChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
 		D436369F285E1F6000E7827D /* BarChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChart.swift; sourceTree = "<group>"; };
 		D43636A2285E1F9000E7827D /* PieChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieChartView.swift; sourceTree = "<group>"; };
@@ -254,7 +254,7 @@
 			isa = PBXGroup;
 			children = (
 				D436369F285E1F6000E7827D /* BarChart.swift */,
-				D436369B285E1F2800E7827D /* BarChartModel.swift */,
+				D436369B285E1F2800E7827D /* BarStickView.swift */,
 				D436369D285E1F3000E7827D /* BarChartView.swift */,
 			);
 			path = BarChart;
@@ -399,7 +399,7 @@
 				D436369E285E1F3000E7827D /* BarChartView.swift in Sources */,
 				11F247012857235700DA595B /* GuideLastPageView.swift in Sources */,
 				4D059C69285E3D0B009E12E1 /* ProcessCircleView.swift in Sources */,
-				D436369C285E1F2800E7827D /* BarChartModel.swift in Sources */,
+				D436369C285E1F2800E7827D /* BarStickView.swift in Sources */,
 				11F246FB2857222C00DA595B /* GuideTabView.swift in Sources */,
 				4D059C67285E3C8E009E12E1 /* MainView.swift in Sources */,
 				11F2471128572E2D00DA595B /* EnterSugarView.swift in Sources */,
