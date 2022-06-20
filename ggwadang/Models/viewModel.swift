@@ -35,6 +35,8 @@ class viewModel: ObservableObject{
         //만약에 동일한 section을 누른다면 아무런 변화 없음
         if(self.selection == section){
             self.values = getSugarAmountFromUsers(records: sortedRecords)
+            self.dataPoints = []
+            dataPoints.append(self.values.reduce(0, +))
         }
         print(sortedRecords)
         //각각의 section별로의 데이터 추출
@@ -79,9 +81,9 @@ class viewModel: ObservableObject{
                 drinks += record.calculatedSugar
             case "초콜릿":
                 chocolate += record.calculatedSugar
-            case "캐러멜, 양갱":
+            case "캐러멜·양갱":
                 caramel += record.calculatedSugar
-            case "캔디":
+            case "캔디·젤리":
                 candy += record.calculatedSugar
             default:
                 self.values = [0,0,0,0,0,0,0,0,0]
