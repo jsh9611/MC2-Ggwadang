@@ -48,6 +48,9 @@ struct EnterSugarView: View {
         }
         .onAppear {
             // 권장 섭취량을 기억한다.
+            if nickName == "" {
+                nickName = "홍길동"
+            }
             recommendSugar = sugar
         }
         // 커스텀 Navigation Back 버튼 구현 필요!
