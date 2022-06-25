@@ -12,7 +12,7 @@ struct SettingUserSugarView: View {
     @AppStorage(StorageKeys.nickName.rawValue) private var nickName: String = UserDefaults.standard.string(forKey: "nickName") ?? ""    // 닉네임
     
     @State var nowSugar : Double = 0
-        
+    @Binding var naviLinkActive : Bool
     var body: some View {
         
         VStack (alignment: .leading) {
@@ -35,6 +35,7 @@ struct SettingUserSugarView: View {
             
             Button {
                 sugar = nowSugar
+                naviLinkActive.toggle()
             } label: {
                 NextButton(buttonText: "수정하기")
                     .buttonStyle(PlainButtonStyle())
