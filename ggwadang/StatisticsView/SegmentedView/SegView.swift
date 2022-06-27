@@ -19,7 +19,6 @@ struct SegView: View {
     //store.record에서 가져온 DB 데이터
     let records : [Record]
     
-    
     //SegView에서 객체 생성 후, SegPicker에서 해당 모델 관찰
     @StateObject var TestModel = viewModel()
     
@@ -33,11 +32,11 @@ struct SegView: View {
         ScrollView{
             VStack(){
                 //Setting Icon
-                Image(systemName: "gearshape")
-                    .resizable()
-                        .frame(width: 21.0, height: 21.0)
-                        .padding()
-                    .frame(width: 350, alignment: .trailing)
+//                Image(systemName: "gearshape")
+//                    .resizable()
+//                        .frame(width: 21.0, height: 21.0)
+//                        .padding()
+//                    .frame(width: 350, alignment: .trailing)
                 
                 //Segment Picker View
                 SegmentedPicker(ViewModel: TestModel, records: self.records)
