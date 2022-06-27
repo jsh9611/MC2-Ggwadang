@@ -13,6 +13,7 @@ struct ContentView: View {
     // 사용자 입력 온보딩 페이지
     @AppStorage(StorageKeys.isFirstDataInput.rawValue) private var isFirstDataInput: Bool = true   // 유저 입력
     
+    //User가 먹었던 값들 저장된 DB
     @EnvironmentObject var store: RecordStore
     
     

@@ -65,7 +65,7 @@ struct SegmentedPicker: View {
     //사용자가 먹은 음식들 저장된 DB데이터
     let records : [Record]
     
-    private let numbers: [String] = ["주","월","년"]
+    private let numbers: [String] = ["주","월"]
     var body: some View {
         ZStack(alignment: .leading){
             self.activeSegmentView

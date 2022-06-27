@@ -13,6 +13,7 @@ struct MainTabView: View {
     @EnvironmentObject var store: RecordStore
     @State var isPresented = false
     
+    //store.records에서 가져옴
     let records: [Record]
     
     var body: some View {
