@@ -15,7 +15,7 @@ struct MainFullListView: View {
         VStack{
             Text("\(today, formatter: MainView.dateFormat)").font(.headline)
             List {
-                if store.records.isEmpty {
+                if store.records.filter{ $0.date == "\(dateFormatter(date: today))" }.isEmpty {
                     Text("기록을 시작해보세요!")
                         .listRowBackground(Color.clear)
                 }
@@ -36,6 +36,7 @@ struct MainFullListView: View {
 
 struct RecordRow: View {
     @EnvironmentObject var store: RecordStore
+    @State private var showAlert = false
     let record: Record
     var body: some View {
         HStack {
@@ -46,18 +47,23 @@ struct RecordRow: View {
             }
             Spacer()
             Text("당류 \(String(format: "%.1f", record.calculatedSugar))g")
-            Button(action: deleteRecord) {
+            Button(action: {showAlert.toggle()}) {
                 Image(systemName: "trash.fill")
             }
+            .alert("기록 삭제", isPresented: $showAlert) {
+                Button("삭제", role: .destructive) {deleteRecord()}
+                Button("취소", role: .cancel) {}
+            } message: {
+                Text("'\(record.small)'을/를 삭제하시겠습니까?")
+            }
+            .buttonStyle(BorderlessButtonStyle())
         }
     }
 }
 
 extension RecordRow {
     func deleteRecord() {
-        withAnimation {
-            store.delete(id: record.id)
-        }
+        store.delete(id: record.id)
     }
 }
 
