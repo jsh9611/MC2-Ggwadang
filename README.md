@@ -1,4 +1,6 @@
-![Logo](https://dummyimage.com/1000x300/000/fff.png)
+
+![꽈당 앱 배너](https://user-images.githubusercontent.com/103024799/176329731-5ac236a3-6e4d-42ce-95ed-3ce2028f92d7.png)
+
 
 # :iphone: 꽈당(Ggwadang)
 
