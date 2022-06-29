@@ -53,40 +53,41 @@
   </tr>
 </table>
 
-## :framed_picture: Demo
-
-Insert gif or link to demo
 
 ## :fireworks: Screenshots
 
-![App Screenshot](https://dummyimage.com/250x500/000/fff.png)
-![App Screenshot](https://dummyimage.com/250x500/000/fff.png)
-![App Screenshot](https://dummyimage.com/250x500/000/fff.png)
-![App Screenshot](https://dummyimage.com/250x500/000/fff.png)
-![App Screenshot](https://dummyimage.com/250x500/000/fff.png)
-![App Screenshot](https://dummyimage.com/250x500/000/fff.png)
+
+<p>
+  <img src="https://user-images.githubusercontent.com/57349859/176413662-e7e743d0-f098-4932-bb34-3fec60bdab93.png" height="360" width="180">
+  <img src="https://user-images.githubusercontent.com/57349859/176413665-9b6e5446-4ee8-4e61-ac75-cd0f391182d3.png" height="360" width="180">
+  <img src="https://user-images.githubusercontent.com/57349859/176413668-cda08d82-64cb-4ac6-abd1-c36af694865b.png" height="360" width="180">
+  <img src="https://user-images.githubusercontent.com/57349859/176413670-4ce898cc-beeb-4295-8363-7030d38ecb43.png" height="360" width="180">
+  <img src="https://user-images.githubusercontent.com/57349859/176415387-63cb8dec-870e-4df0-953b-a3793aba873d.png" height="360" width="180">
+</p>
+
+
 
 ## :sparkles: Skills & Tech Stack
 
+
 <p>
   <h4>개발</h4>
-    <img src="https://img.shields.io/badge/Swift-F05138?style=flat-square&logo=swift&logoColor=white"/>&nbsp 
-    <img src="https://img.shields.io/badge/SwiftUI-0061b7?style=flat-square&logo=swift&logoColor=white"/>&nbsp 
-    <img src="https://img.shields.io/badge/Realm-f59f90?style=flat-square&logo=realm&logoColor=954d9f"/>&nbsp
-    <img src="https://img.shields.io/badge/Xcode 13.4.1-1e91dc?style=flat-square&logo=xcode&logoColor=white"/>&nbsp
+    <span>
+      <img src="https://img.shields.io/badge/Swift-F05138?style=flat-square&logo=swift&logoColor=white"/>&nbsp 
+      <img src="https://img.shields.io/badge/SwiftUI-0061b7?style=flat-square&logo=swift&logoColor=white"/>&nbsp 
+      <img src="https://img.shields.io/badge/Realm-ffffff?style=flat-square&logo=realm&logoColor=954d9f"/>&nbsp
+      <img src="https://img.shields.io/badge/Xcode 13.4.1-1e91dc?style=flat-square&logo=xcode&logoColor=white"/>&nbsp
+    </span>
   <br/>
   <h4>운영</h4>
-    <img src="https://img.shields.io/badge/Notion-ffffff?style=flat-square&logo=notion&logoColor=black"/>&nbsp 
-    <img src="https://img.shields.io/badge/Miro-f7c92d?style=flat-square&logo=miro&logoColor=050035"/>&nbsp
-    <img src="https://img.shields.io/badge/Github-000000?style=flat-square&logo=github&logoColor=white"/>&nbsp
-  
+    <span>
+      <img src="https://img.shields.io/badge/Notion-ffffff?style=flat-square&logo=notion&logoColor=black"/>&nbsp
+      <img src="https://img.shields.io/badge/Miro-f7c92d?style=flat-square&logo=miro&logoColor=050035"/>&nbsp
+      <img src="https://img.shields.io/badge/Github-000000?style=flat-square&logo=github&logoColor=white"/>&nbsp
+    </span>
   <h4>디자인</h4>
     <img src="https://img.shields.io/badge/Sketch-f0f0f0?style=flat-square&logo=sketch&logoColor=e26804"/>&nbsp
 </p>
-
-## :books: Documentation
-
-[Documentation](https://linktodocumentation)
 
 ## :lock_with_ink_pen: License
 
