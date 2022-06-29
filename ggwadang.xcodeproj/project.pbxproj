@@ -45,6 +45,8 @@
 		4DB1F296285DAD5900BA7465 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB1F295285DAD5900BA7465 /* Food.swift */; };
 		4DB1F298285DAD8600BA7465 /* FoodDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB1F297285DAD8600BA7465 /* FoodDB.swift */; };
 		4DB1F29A285DAD9200BA7465 /* FoodStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB1F299285DAD9200BA7465 /* FoodStore.swift */; };
+		4DBC6ABD286A192400E3C73E /* LicenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBC6ABC286A192400E3C73E /* LicenseView.swift */; };
+		4DBC6ABF286A231300E3C73E /* apache-license.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4DBC6ABE286A231200E3C73E /* apache-license.txt */; };
 		D436369C285E1F2800E7827D /* BarStickView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D436369B285E1F2800E7827D /* BarStickView.swift */; };
 		D436369E285E1F3000E7827D /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D436369D285E1F3000E7827D /* BarChartView.swift */; };
 		D43636A0285E1F6000E7827D /* BarChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = D436369F285E1F6000E7827D /* BarChart.swift */; };
@@ -74,6 +76,7 @@
 		11F2471028572E2D00DA595B /* EnterSugarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterSugarView.swift; sourceTree = "<group>"; };
 		11F24712285747AB00DA595B /* TempContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempContentView.swift; sourceTree = "<group>"; };
 		11F24849285DC67600DA595B /* final_food_data.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = final_food_data.csv; path = Assets/final_food_data.csv; sourceTree = "<group>"; };
+		11F41F55286B1AB200502EE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4D059C60285E3C47009E12E1 /* StatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
 		4D059C62285E3C77009E12E1 /* MainFullListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainFullListView.swift; sourceTree = "<group>"; };
 		4D059C64285E3C85009E12E1 /* MainListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainListView.swift; sourceTree = "<group>"; };
@@ -96,6 +99,8 @@
 		4DB1F295285DAD5900BA7465 /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 		4DB1F297285DAD8600BA7465 /* FoodDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDB.swift; sourceTree = "<group>"; };
 		4DB1F299285DAD9200BA7465 /* FoodStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodStore.swift; sourceTree = "<group>"; };
+		4DBC6ABC286A192400E3C73E /* LicenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseView.swift; sourceTree = "<group>"; };
+		4DBC6ABE286A231200E3C73E /* apache-license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "apache-license.txt"; path = "Assets/apache-license.txt"; sourceTree = "<group>"; };
 		D436369B285E1F2800E7827D /* BarStickView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarStickView.swift; sourceTree = "<group>"; };
 		D436369D285E1F3000E7827D /* BarChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
 		D436369F285E1F6000E7827D /* BarChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChart.swift; sourceTree = "<group>"; };
@@ -191,6 +196,7 @@
 		4D7275FC284CEE5800F4DCC6 /* ggwadang */ = {
 			isa = PBXGroup;
 			children = (
+				11F41F55286B1AB200502EE6 /* Info.plist */,
 				D4363697285E1ED000E7827D /* StatisticsView */,
 				4D4E370D285B5E7500B777C1 /* Models */,
 				4DB1F26C285B6B9600BA7465 /* ViewModels */,
@@ -216,6 +222,8 @@
 				113BA14E285E5F2B008A5594 /* SettingListView.swift */,
 				113BA150285E5FCA008A5594 /* SettingUserInfoView.swift */,
 				113BA152285E603E008A5594 /* SettingUserSugarView.swift */,
+				4DBC6ABC286A192400E3C73E /* LicenseView.swift */,
+				4DBC6ABE286A231200E3C73E /* apache-license.txt */,
 				4D727601284CEE5800F4DCC6 /* Assets.xcassets */,
 				4D727603284CEE5800F4DCC6 /* Preview Content */,
 			);
@@ -355,6 +363,7 @@
 			files = (
 				4D727605284CEE5800F4DCC6 /* Preview Assets.xcassets in Resources */,
 				4D727602284CEE5800F4DCC6 /* Assets.xcassets in Resources */,
+				4DBC6ABF286A231300E3C73E /* apache-license.txt in Resources */,
 				11F2484A285DC67600DA595B /* final_food_data.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -379,6 +388,7 @@
 				11F24705285724C200DA595B /* StorageKeys.swift in Sources */,
 				4D727600284CEE5800F4DCC6 /* ContentView.swift in Sources */,
 				4D0C64CE285AFBEB00FF70E6 /* MediumCategoryView.swift in Sources */,
+				4DBC6ABD286A192400E3C73E /* LicenseView.swift in Sources */,
 				4D4E370F285B5E8500B777C1 /* RecordDB.swift in Sources */,
 				4D0C64CC285AFBA700FF70E6 /* LargeCategoryView.swift in Sources */,
 				4D059C6B285E3D22009E12E1 /* HomeView.swift in Sources */,
@@ -469,7 +479,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -523,6 +533,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -541,22 +552,24 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ggwadang/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.team5.ggwadang;
+				PRODUCT_BUNDLE_IDENTIFIER = com.teacoli.ggwadang;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -571,22 +584,24 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ggwadang/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.team5.ggwadang;
+				PRODUCT_BUNDLE_IDENTIFIER = com.teacoli.ggwadang;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

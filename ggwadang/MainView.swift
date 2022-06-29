@@ -20,6 +20,7 @@ struct MainView: View {
     @State private var todaySugarValue: Double = 0
     @State var progressValue: Double =  0
     @Binding var isPresented: Bool
+    @State var naviLinkActive = false
     @AppStorage(StorageKeys.sugar.rawValue) private var sugar : Double = UserDefaults.standard.double(forKey: "sugar")  // 유저의 설탕값
     let realm = try! Realm()
 
@@ -46,7 +47,7 @@ struct MainView: View {
                         .foregroundColor(.white)
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink(destination: SettingListView()) {
+                    NavigationLink(destination: SettingListView(naviLinkActive: $naviLinkActive), isActive: $naviLinkActive) {
                         Image(systemName: "gearshape")
                             .foregroundColor(.white)
                     }

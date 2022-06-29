@@ -14,10 +14,14 @@ struct SegView: View {
     @State var testtest: Double = 0.0
     @State var stringTest: String = ""
     @State var changeStatus: Bool = false
+    @State var barTest: Double = 0.0
+    @EnvironmentObject var store: RecordStore
+    //store.record에서 가져온 DB 데이터
     let records : [Record]
     
     //SegView에서 객체 생성 후, SegPicker에서 해당 모델 관찰
     @StateObject var TestModel = viewModel()
+    
     
     //@State var dataPoints: [double] -> BarChart에 들어갈 내용 -> 주/월/년 별로의 실질 데이터
     //@State var values: [Int] -> PieChart에 들어가 내용 -> 각 당 그람수
@@ -28,11 +32,11 @@ struct SegView: View {
         ScrollView{
             VStack(){
                 //Setting Icon
-                Image(systemName: "gearshape")
-                    .resizable()
-                        .frame(width: 21.0, height: 21.0)
-                        .padding()
-                    .frame(width: 350, alignment: .trailing)
+//                Image(systemName: "gearshape")
+//                    .resizable()
+//                        .frame(width: 21.0, height: 21.0)
+//                        .padding()
+//                    .frame(width: 350, alignment: .trailing)
                 
                 //Segment Picker View
                 SegmentedPicker(ViewModel: TestModel, records: self.records)
@@ -45,14 +49,18 @@ struct SegView: View {
                     VStack(alignment:.leading){
                         Text("섭취한 당류")
                             .font(.callout)
-                        Text("  \(TestModel.dataPoints[0],specifier: "%.1f")g")
+                        Text(" \(barTest,specifier: "%.1f")g")
                             .font(.system(size: 28,weight: .bold))
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(EdgeInsets(top: 20, leading: 10, bottom: 0, trailing: 0))
                 
-                    BarChart(dataPoints: TestModel.dataPoints)
-                        .frame(maxWidth: .infinity)
+                    BarChart(dataPoints: TestModel.dataPoints,
+                             barTest: self.$barTest,
+                             ViewModel: TestModel
+                    )
+                    .frame(maxWidth: .infinity, minHeight: 180,maxHeight: 180,alignment: .bottom)
+                    
                         
                 }
                 
@@ -98,34 +106,20 @@ struct SegView: View {
         .onAppear{
             TestModel.getTotalSugar(section: TestModel.selection, records: records)
         }
-        .onChange(of: changeStatus){changed in
-            TestModel.getTotalSugar(section: TestModel.selection, records: records)
-        }
+        
     }
     //End of Body View
     
-    func selectedNumber(number: Int) -> Text{
-        switch number{
-        case 0:
-            return Text("주뷰")
-        case 1:
-            return Text("월뷰")
-        case 2:
-            return Text("연뷰")
-        default:
-            return Text("none")
-        }
-    }
 }
 //End of SegView struct
 
-/*
 struct SegView_Previews: PreviewProvider {
     static var previews: some View {
         SegView(
+            records: [],
             TestModel: viewModel()
         )
     }
 }
-*/
+
 //format %.1f
