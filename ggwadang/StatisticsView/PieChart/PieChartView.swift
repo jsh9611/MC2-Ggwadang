@@ -39,7 +39,7 @@ struct PieChartView: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack{
-                ForEach(0..<self.values.count){ i in
+                ForEach(0..<self.values.count, id: \.self) { i in
                     PieSliceView(pieSliceData: self.slices[i],innerSliceView: 1)
                         .onTapGesture {
                             testtest = values[i]
