@@ -22,11 +22,8 @@ struct MediumCategoryView: View {
         LazyVGrid(columns: gridItemLayout, spacing: 10) {
             ForEach((0..<mediumArray.count), id: \.self) { num in
                 NavigationLink(destination: SmallCategoryView(isPresented: self.$isPresented, large_isSelected: self.$large_isSelected, medium_isSelected: self.$medium_isSelected, small_isSelected: self.$small_isSelected, smallArray: $smallArray)
-                )
-                    
-                
-                {
-                        Text(mediumArray[num]).foregroundColor(.black)
+                ){
+                    Text(mediumArray[num]).foregroundColor(.black)
                 }
                 .simultaneousGesture(TapGesture().onEnded {
                     medium_isSelected=mediumArray[num]
