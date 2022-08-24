@@ -199,15 +199,13 @@
 			path = StorageKeys;
 			sourceTree = "<group>";
 		};
-		11130D9628B5BFE90028C44E /* etc */ = {
+		11130D9D28B612190028C44E /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				11130D9228B5BDDA0028C44E /* License */,
-				11130D9528B5BFA80028C44E /* StorageKeys */,
 				11130D9428B5BE220028C44E /* FoodData */,
-				11130D9328B5BDE40028C44E /* Extentions */,
+				11130D9528B5BFA80028C44E /* StorageKeys */,
 			);
-			path = etc;
+			path = Resource;
 			sourceTree = "<group>";
 		};
 		11F246F82857207600DA595B /* Views */ = {
@@ -286,7 +284,9 @@
 				4D4E370D285B5E7500B777C1 /* Models */,
 				11F246F82857207600DA595B /* Views */,
 				4DB1F26C285B6B9600BA7465 /* ViewModels */,
-				11130D9628B5BFE90028C44E /* etc */,
+				11130D9228B5BDDA0028C44E /* License */,
+				11130D9D28B612190028C44E /* Resource */,
+				11130D9328B5BDE40028C44E /* Extentions */,
 				4D7275FD284CEE5800F4DCC6 /* ggwadangApp.swift */,
 				4D7275FF284CEE5800F4DCC6 /* ContentView.swift */,
 				11F41F55286B1AB200502EE6 /* Info.plist */,
@@ -614,7 +614,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ggwadang/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 9FDS8R22C5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ggwadang/Info.plist;
@@ -647,7 +647,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ggwadang/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 9FDS8R22C5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ggwadang/Info.plist;
