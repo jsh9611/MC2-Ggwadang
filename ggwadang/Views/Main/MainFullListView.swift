@@ -9,11 +9,10 @@ import SwiftUI
 import RealmSwift
 
 struct MainFullListView: View {
-    @EnvironmentObject var store: RecordStore    
+    @EnvironmentObject var store: RecordStore
     
     var body: some View {
         VStack{
-            Text("\(today, formatter: MainView.dateFormat)").font(.headline)
             List {
                 if store.records.filter{ $0.date == "\(dateFormatter(date: today))" }.isEmpty {
                     Text("기록을 시작해보세요!")
@@ -25,7 +24,8 @@ struct MainFullListView: View {
                         .listRowBackground(Color.clear)
                 }
             }
-            .onAppear{
+            .navigationTitle("\(today, formatter: MainView.dateFormat)")
+            .onAppear {
                 UITableView.appearance().backgroundColor = UIColor.white
             }
             Spacer()
@@ -33,11 +33,11 @@ struct MainFullListView: View {
     }
 }
 
-
 struct RecordRow: View {
     @EnvironmentObject var store: RecordStore
     @State private var showAlert = false
     let record: Record
+    
     var body: some View {
         HStack {
             VStack (alignment: .leading){
