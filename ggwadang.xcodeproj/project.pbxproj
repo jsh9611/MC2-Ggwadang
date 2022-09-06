@@ -234,8 +234,8 @@
 		11F24706285724FB00DA595B /* EnterInfoViews */ = {
 			isa = PBXGroup;
 			children = (
-				11F24707285725A000DA595B /* EnterUserDataView.swift */,
 				11F2471028572E2D00DA595B /* EnterSugarView.swift */,
+				11F24707285725A000DA595B /* EnterUserDataView.swift */,
 			);
 			path = EnterInfoViews;
 			sourceTree = "<group>";
