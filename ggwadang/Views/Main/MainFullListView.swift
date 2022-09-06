@@ -17,12 +17,21 @@ struct MainFullListView: View {
                 if store.records.filter{ $0.date == "\(dateFormatter(date: today))" }.isEmpty {
                     Text("기록을 시작해보세요!")
                         .listRowBackground(Color.clear)
+                        .frame(maxWidth: .infinity, alignment: .center)
                 }
                 
                 ForEach(store.records.filter{ $0.date == "\(dateFormatter(date: today))" }) { record in
                     RecordRow(record: record)
                         .listRowBackground(Color.clear)
+                        .swipeActions(edge: .trailing) {
+                            Button(action: {
+                                store.delete(id: record.id)
+                            }) {
+                                Image(systemName: "trash")
+                            }.tint(.red)
+                        }
                 }
+                
             }
             .navigationTitle("\(today, formatter: MainView.dateFormat)")
             .onAppear {
@@ -34,8 +43,6 @@ struct MainFullListView: View {
 }
 
 struct RecordRow: View {
-    @EnvironmentObject var store: RecordStore
-    @State private var showAlert = false
     let record: Record
     
     var body: some View {
@@ -47,23 +54,7 @@ struct RecordRow: View {
             }
             Spacer()
             Text("당류 \(String(format: "%.1f", record.calculatedSugar))g")
-            Button(action: {showAlert.toggle()}) {
-                Image(systemName: "trash.fill")
-            }
-            .alert("기록 삭제", isPresented: $showAlert) {
-                Button("삭제", role: .destructive) {deleteRecord()}
-                Button("취소", role: .cancel) {}
-            } message: {
-                Text("'\(record.small)'을/를 삭제하시겠습니까?")
-            }
-            .buttonStyle(BorderlessButtonStyle())
-        }
-    }
-}
-
-extension RecordRow {
-    func deleteRecord() {
-        store.delete(id: record.id)
+        }.frame(height: 50)
     }
 }
 
