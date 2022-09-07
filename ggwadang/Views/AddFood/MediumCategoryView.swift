@@ -41,8 +41,7 @@ struct MediumCategoryView: View {
                 .modifier(gridModifier())
             }
         }.onAppear {
-            // 안좋은 코드
-            // 리펙토링이 필요합니다ㅠㅠ
+            // TODO: - 리펙토링이 필요합니다ㅠㅠ
             let temp = food.foods.filter{ $0.large == large_isSelected }
             var tempSet : Set<String> = []
             for tem in temp {
