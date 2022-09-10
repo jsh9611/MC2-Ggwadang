@@ -23,16 +23,20 @@ struct MainListView: View {
                     Image(systemName: "chevron.right")
                 }
             }
-            
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 15) {
-                    ForEach(todayArray,id: \.self) { food in
-                        FoodCell(food: food)
+            if todayArray.isEmpty {
+                EmptyCell(isPresented: $isPresented)
+                    .frame(height: 150)
+            } else {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 15) {
+                        ForEach(todayArray,id: \.self) { food in
+                            FoodCell(food: food)
+                        }
                     }
+                    .padding(.top, 10)
                 }
-                .padding(.top, 10)
+                .frame(height: 150)
             }
-            .frame(height: 150)
         }
         .padding(20)
         .onChange(of: isPresented) { sheetIsOn in
@@ -43,7 +47,6 @@ struct MainListView: View {
                 todayArray.append([record.large, record.small])
             }
         }
-        
         .onAppear {
             todayArray = []
             let todayRecords = store.records.filter{ $0.date == "\(dateFormatter(date: today))" }
@@ -51,6 +54,7 @@ struct MainListView: View {
                 todayArray.append([record.large, record.small])
             }
         }
+        .fullScreenCover(isPresented: $isPresented, content: {LargeCategoryView(isPresented: self.$isPresented).environmentObject(self.store)})
     }
 }
 
@@ -68,6 +72,30 @@ struct FoodCell: View {
                 .background(Circle().fill(Color.gray.opacity(0.1)))
             
             Text(food[1])
+                .padding(.top, 10)
+                .font(.subheadline)
+                .multilineTextAlignment(.leading)
+        }
+    }
+}
+
+struct EmptyCell: View {
+    @Binding var isPresented: Bool
+    
+    var body: some View {
+        VStack {
+            Button(action: {isPresented.toggle()}) {
+            Image(systemName: "plus")
+                .font(.title)
+                .frame(width: 50, height: 50)
+                .padding(15)
+                .cornerRadius(25)
+                .foregroundColor(Color("CustomColor"))
+                .background(Circle().fill(Color.gray.opacity(0.1)))
+            }
+            
+            Text("간식을 기록해 보세요")
+                .padding(.top, 10)
                 .font(.subheadline)
                 .multilineTextAlignment(.leading)
         }
