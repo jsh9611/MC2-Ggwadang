@@ -20,10 +20,11 @@ struct EnterSugarView: View {
     var body: some View {
         
         VStack (alignment: .leading) {
+            //목표 당 섭취량 선택
             Text("하루 목표 당 섭취량을\n선택해 주세요.")
                 .font(.body)
                 .bold()
-                .padding(.bottom, 30)
+                .padding(.bottom, 20)
             Text("\(String(format: "%.0f", sugar))g")
                 .font(.largeTitle)
                 .bold()
@@ -34,18 +35,22 @@ struct EnterSugarView: View {
             Text("* \(nickName)님의 일일 당 섭취 권장량은 \(Int(recommendSugar))g 입니다.")
                 .font(.footnote)
                 .foregroundColor(.gray)
-            
             Spacer()
             
+            HStack{
+                Spacer()
             Button {
                 isFirstDataInput.toggle()
             } label: {
                 NextButton(buttonText: "시작하기")
                     .buttonStyle(PlainButtonStyle())
-                    .frame(height: 50)
+                    .frame(width: 350, height: 50)
             }
-            .padding()
+           Spacer()
         }
+        }
+        .frame(width: 350)
+        .padding(.bottom, 20)
         .onAppear {
             // 권장 섭취량을 기억한다.
             if nickName == "" {
@@ -55,6 +60,5 @@ struct EnterSugarView: View {
         }
         // 커스텀 Navigation Back 버튼 구현 필요!
         //        .navigationBarHidden(true)
-        .padding()
     }
 }

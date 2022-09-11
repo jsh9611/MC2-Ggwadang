@@ -18,12 +18,11 @@ struct EnterUserDataView: View {
     var body: some View {
         NavigationView {
             VStack (alignment: .leading){
-                Spacer()
                 // 닉네임 입력
                 Text("닉네임을 입력해주세요.")
                     .bold()
-                    .padding(.top, 20)
-                    .padding(.bottom, 5)
+                    .padding(.top, 100)
+                    .padding(.bottom, 10)
                 ZStack {
                     TextFieldBox()
                         .frame(width: 350)
@@ -37,7 +36,7 @@ struct EnterUserDataView: View {
                 // 성별 선택(애니메이션 기능 구현 예정)
                 Text("성별을 선택해주세요.")
                     .bold()
-                    .padding(.bottom, 5)
+                    .padding(.bottom, 10)
                 HStack {
                     Spacer()
                     GenderSegmentedBar(selected: $gender)
@@ -47,8 +46,8 @@ struct EnterUserDataView: View {
                 .shadow(color: .black.opacity(0.1), radius: 10, x: 10, y: 10)
                 .shadow(color: .white.opacity(0.7), radius: 10, x: -5, y: -5)
                 
+                Spacer()
                 HStack {
-                    Spacer()
                     NavigationLink(destination: EnterAgePickerView(isFirstDataInput: $isFirstDataInput)) {
                         NextButton(buttonText: "다음")
                             .frame(width: 350, height: 50)

@@ -18,7 +18,6 @@ struct EnterAgePickerView: View {
     var body: some View {
         
         VStack (alignment: .leading){
-            Spacer()
             // 나이 선택
             Text("나이를 선택해주세요.")
                 .bold()
@@ -37,6 +36,7 @@ struct EnterAgePickerView: View {
             .cornerRadius(20)
             .padding(.bottom, 40)
             
+            Spacer()
             HStack {
                 Spacer()
                 NavigationLink(destination: EnterSugarView(isFirstDataInput: $isFirstDataInput, nickName: $nickName)) {
@@ -47,6 +47,9 @@ struct EnterAgePickerView: View {
                 Spacer()
             }
         }
+        .frame(width: 350)
+        .padding(.bottom, 20)
+        
         // 나이 값이 변경될 때 마다 설탕 값 새롭게 갱신
         .onChange(of: $age.wrappedValue) { _ in
             sugar = sugarGram()
