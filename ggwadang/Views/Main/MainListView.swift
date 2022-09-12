@@ -10,8 +10,7 @@ import RealmSwift
 
 struct MainListView: View {
     @EnvironmentObject var store: RecordStore
-    @State var todayArray: [[String]] = []
-    @State private var todaySugarValue: Double = 0
+    @State var todayRecords: [Record] = []
     @Binding var isPresented: Bool
     
     var body: some View {
@@ -21,15 +20,17 @@ struct MainListView: View {
                 Spacer()
                 NavigationLink(destination: MainFullListView()) {
                     Image(systemName: "chevron.right")
+                        .font(.headline)
                 }
             }
-            if todayArray.isEmpty {
+            
+            if todayRecords.isEmpty {
                 EmptyCell(isPresented: $isPresented)
                     .frame(height: 150)
             } else {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 15) {
-                        ForEach(todayArray,id: \.self) { food in
+                        ForEach(todayRecords) { food in
                             FoodCell(food: food)
                         }
                     }
@@ -41,37 +42,29 @@ struct MainListView: View {
         .padding(20)
         .onChange(of: isPresented) { sheetIsOn in
             if sheetIsOn { return }
-            todayArray = []
-            let todayRecords = store.records.filter{ $0.date == "\(dateFormatter(date: today))" }
-            for record in todayRecords {
-                todayArray.append([record.large, record.small])
-            }
+            todayRecords = store.records.filter{ $0.date == "\(dateFormatter(date: today))" }
         }
         .onAppear {
-            todayArray = []
-            let todayRecords = store.records.filter{ $0.date == "\(dateFormatter(date: today))" }
-            for record in todayRecords {
-                todayArray.append([record.large, record.small])
-            }
+            todayRecords = store.records.filter{ $0.date == "\(dateFormatter(date: today))" }
         }
         .fullScreenCover(isPresented: $isPresented, content: {LargeCategoryView(isPresented: self.$isPresented).environmentObject(self.store)})
     }
 }
 
 struct FoodCell: View {
-    let food: [String]!
+    let food: Record!
     let categoryEmoji = ["과자":"🍪", "떡·견과류":"🍡", "베이커리":"🥐", "아이스크림":"🍦", "유가공품":"🥛", "음료":"🥤", "초콜릿":"🍫", "캐러멜·양갱":"🍮", "캔디·젤리":"🍭"]
     
     var body: some View {
         VStack {
-            Text(categoryEmoji[food[0]] ?? "🍪")
+            Text(categoryEmoji[food.large] ?? "🍪")
                 .modifier(FittingFontSizeModifier())
                 .frame(width: 50, height: 50)
                 .cornerRadius(25)
                 .padding(15)
                 .background(Circle().fill(Color.gray.opacity(0.1)))
             
-            Text(food[1])
+            Text(food.small)
                 .padding(.top, 10)
                 .font(.subheadline)
                 .multilineTextAlignment(.leading)
