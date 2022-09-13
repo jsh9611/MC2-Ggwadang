@@ -9,14 +9,11 @@ import SwiftUI
 import RealmSwift
 
 struct StatusView: View {
-    
-    // TODO: RecordDB로부터 오늘 먹은 레코드 불러오기 -> 섭취량 계산
-//    @State private var intakeSugar: Double = 15
-    @State private var todaySugarValue: Double = 0
+    @Binding var todaySugarValue: Double
     @Binding var isPresented: Bool
-    let realm = try! Realm()
-    // TODO: AppStorage에 저장된 사용자 목표 섭취량 가져오기
     @AppStorage(StorageKeys.sugar.rawValue) private var sugar : Double = UserDefaults.standard.double(forKey: "sugar")
+    
+    let realm = try! Realm()
     
     var body: some View {
         // 오늘 날짜에 대해서만 불러온다.
@@ -36,75 +33,59 @@ struct StatusView: View {
                     Text("\(String(format: "%.1f", todaySugarValue))g")
                         .fontWeight(.bold)
                 }
+                
                 Spacer()
                     .frame(width: 35)
+                
                 Divider()
                     .background(Color.white)
                     .frame(height: 40)
                     .overlay(.white)
+                
                 Spacer()
                     .frame(width: 35)
+                
                 VStack {
                     Text("목표량")
                         .font(.system(size:15, weight: .medium))
+                    
                     Spacer()
                         .frame(height: 5)
+                    
                     Text("\((String(format: "%.1f", sugar)))g")
                         .fontWeight(.bold)
+                    
                 }
+                
                 Spacer()
                     .frame(width: 35)
+                
                 Divider()
                     .background(Color.white)
                     .frame(height: 40)
                     .overlay(.white)
+                
                 Spacer()
                     .frame(width: 35)
                 
                 VStack {
                     Text("남은 양")
                         .font(.system(size:15, weight: .medium))
+                    
                     Spacer()
                         .frame(height: 5)
+                    
                     Text("\(String(format: "%.1f", (sugar - todaySugarValue)))g")
                         .fontWeight(.bold)
+                    
                 }
-            }
-            .foregroundColor(.white)
-        }
-        .onChange(of: isPresented) { sheetIsOn in
-            if sheetIsOn { return }
-        
-            let userRecords = realm.objects(RecordDB.self).filter("date == '\(yyyyMMdd(date: Date()))'")
-            var sum : Double = 0
-            for temp in userRecords {
-                sum += temp.calculatedSugar
-            }
-            todaySugarValue = sum
+                
+            }.foregroundColor(.white)
+            
         }
         
-        .onAppear {
-            let userRecords = realm.objects(RecordDB.self).filter("date == '\(yyyyMMdd(date: Date()))'")
-            var sum : Double = 0
-            for temp in userRecords {
-                sum += temp.calculatedSugar
-            }
-            todaySugarValue = sum
-        }
     }
-    func yyyyMMdd(date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyyMMdd"
-        let converted = formatter.string(from: date)
-        return converted
-    }
-
 }
 
-//struct StatusView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        StatusView()
-//    }
-//}
 
 

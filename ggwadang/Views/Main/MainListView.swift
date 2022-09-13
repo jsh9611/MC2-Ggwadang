@@ -11,8 +11,10 @@ import RealmSwift
 struct MainListView: View {
     @EnvironmentObject var store: RecordStore
     @State var todayArray: [[String]] = []
-    @State private var todaySugarValue: Double = 0
+    
+//    @Binding var todaySugarValue: Double
     @Binding var isPresented: Bool
+    
     var body: some View {
         VStack {
             HStack {
