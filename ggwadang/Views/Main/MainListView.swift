@@ -10,92 +10,88 @@ import RealmSwift
 
 struct MainListView: View {
     @EnvironmentObject var store: RecordStore
-    @State var todayArray: [[String]] = []
-    
-//    @Binding var todaySugarValue: Double
+    @State var todayRecords: [Record] = []
     @Binding var isPresented: Bool
     
     var body: some View {
         VStack {
             HStack {
-                Text("오늘의 당 섭취")
+                Text("오늘의 당 섭취").bold()
                 Spacer()
                 NavigationLink(destination: MainFullListView()) {
-                    Text("전체보기").foregroundColor(.accentColor)
-                }
-                
-            }
-            ZStack {
-                roundedRect()
-                if todayArray.count >= 1 {
-                    HStack {
-                        VStack (alignment: .leading){
-                            Text("\(todayArray[todayArray.count-1][0])")
-                            Text("\((String(format: "%1.f",(todayArray[todayArray.count-1][1] as NSString).doubleValue)))\(todayArray[todayArray.count-1][2])")
-                                .font(.system(size:13))
-                        }
-                        Spacer()
-                        Text("당류 \((String(format: "%.1f",(todayArray[todayArray.count-1][3] as NSString).doubleValue)))g")
-                    }
-                    .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
-                }
-                else {
-                    Text("-")
+                    Image(systemName: "chevron.right")
+                        .font(.headline)
                 }
             }
-            ZStack {
-                roundedRect()
-                if todayArray.count >= 2 {
-                    HStack {
-                        VStack (alignment: .leading){
-                            Text("\(todayArray[todayArray.count-2][0])")
-                            Text("\((String(format: "%1.f",(todayArray[todayArray.count-2][1] as NSString).doubleValue)))\(todayArray[todayArray.count-2][2])")
-                                .font(.system(size:13))
+            
+            if todayRecords.isEmpty {
+                EmptyCell(isPresented: $isPresented)
+                    .frame(height: 150)
+            } else {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 15) {
+                        ForEach(todayRecords) { food in
+                            FoodCell(food: food)
                         }
-                        Spacer()
-                        Text("당류 \((String(format: "%.1f",(todayArray[todayArray.count-2][3] as NSString).doubleValue)))g")
                     }
-                    .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
-                    
+                    .padding(.top, 10)
                 }
-                else {
-                    Text("-")
-                }
+                .frame(height: 150)
             }
         }
+        .padding(20)
         .onChange(of: isPresented) { sheetIsOn in
             if sheetIsOn { return }
-            todayArray = []
-            let temp = store.records.filter{ $0.date == "\(dateFormatter(date: today))" }
-            for tem in temp {
-                todayArray.append([tem.small,String(tem.foodAmount),tem.unit,String(tem.calculatedSugar)])
-            }
+            todayRecords = store.records.filter{ $0.date == "\(dateFormatter(date: today))" }
         }
-        
         .onAppear {
-            todayArray = []
-            let temp = store.records.filter{ $0.date == "\(dateFormatter(date: today))" }
-            for tem in temp {
-                todayArray.append([tem.small,String(tem.foodAmount),tem.unit,String(tem.calculatedSugar)])
-            }
+            todayRecords = store.records.filter{ $0.date == "\(dateFormatter(date: today))" }
         }
-        .padding(EdgeInsets(top: 10, leading: 20, bottom: 20, trailing: 20))
-    }
-    func yyyyMMdd(date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyyMMdd"
-        let converted = formatter.string(from: date)
-        return converted
+        .fullScreenCover(isPresented: $isPresented, content: {LargeCategoryView(isPresented: self.$isPresented).environmentObject(self.store)})
     }
 }
 
-struct roundedRect : View {
+struct FoodCell: View {
+    let food: Record!
+    let categoryEmoji = ["과자":"🍪", "떡·견과류":"🍡", "베이커리":"🥐", "아이스크림":"🍦", "유가공품":"🥛", "음료":"🥤", "초콜릿":"🍫", "캐러멜·양갱":"🍮", "캔디·젤리":"🍭"]
+    
     var body: some View {
-        RoundedRectangle(cornerRadius: 15)
-            .fill(Color.white)
-            .frame(width: 350, height: 80)
-            .shadow(color: .gray.opacity(0.15), radius: 20, x: 0, y: 3)
-            .blur(radius: 0)
+        VStack {
+            Text(categoryEmoji[food.large] ?? "🍪")
+                .modifier(FittingFontSizeModifier())
+                .frame(width: 50, height: 50)
+                .cornerRadius(25)
+                .padding(15)
+                .background(Circle().fill(Color.gray.opacity(0.1)))
+            
+            Text(food.small)
+                .padding(.top, 10)
+                .font(.subheadline)
+                .multilineTextAlignment(.leading)
+        }
+    }
+}
+
+struct EmptyCell: View {
+    @Binding var isPresented: Bool
+    
+    var body: some View {
+        VStack {
+            Button(action: {isPresented.toggle()}) {
+            Image(systemName: "plus")
+                .font(.title)
+                .frame(width: 50, height: 50)
+                .padding(15)
+                .cornerRadius(25)
+                .foregroundColor(Color("CustomColor"))
+                .background(Circle().fill(Color.gray.opacity(0.1)))
+            }
+            
+            Text("간식을 기록해 보세요")
+                .padding(.top, 10)
+                .font(.subheadline)
+                .multilineTextAlignment(.leading)
+        }
     }
 }
 
