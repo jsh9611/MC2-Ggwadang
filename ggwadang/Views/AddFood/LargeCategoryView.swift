@@ -8,11 +8,10 @@
 import SwiftUI
 
 struct LargeCategoryView: View {
-    @EnvironmentObject var store: RecordStore
-    @Binding var isPresented: Bool
     @State var large_isSelected = ""
     @State var medium_isSelected = ""
     @State var small_isSelected = ""
+    @Binding var isPresented: Bool
     
     let largeArray = [["과자","🍪"], ["떡·견과류","🍡"], ["베이커리","🥐"], ["아이스크림","🍦"], ["유가공품","🥛"], ["음료","🥤"], ["초콜릿","🍫"], ["캐러멜·양갱","🍮"], ["캔디·젤리","🍭"]]
     var gridItemLayout = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
@@ -24,7 +23,6 @@ struct LargeCategoryView: View {
                 LazyVGrid(columns: gridItemLayout, spacing: 10) {
                     ForEach((0..<largeArray.count), id: \.self) { num in
                         NavigationLink(destination: MediumCategoryView(isPresented: self.$isPresented, large_isSelected: self.$large_isSelected, medium_isSelected: self.$medium_isSelected, small_isSelected: self.$small_isSelected)
-//                            .environmentObject(self.store)
                         ){
                             VStack(spacing: 10) {
                                 Text(largeArray[num][1]).font(.system(size: 40))

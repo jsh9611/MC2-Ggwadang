@@ -45,6 +45,7 @@
 		4DB1F29A285DAD9200BA7465 /* FoodStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB1F299285DAD9200BA7465 /* FoodStore.swift */; };
 		4DBC6ABD286A192400E3C73E /* LicenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBC6ABC286A192400E3C73E /* LicenseView.swift */; };
 		4DBC6ABF286A231300E3C73E /* apache-license.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4DBC6ABE286A231200E3C73E /* apache-license.txt */; };
+		B5991AAF28C76A5600A14E19 /* EnterAgePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5991AAE28C76A5600A14E19 /* EnterAgePickerView.swift */; };
 		D436369C285E1F2800E7827D /* BarStickView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D436369B285E1F2800E7827D /* BarStickView.swift */; };
 		D436369E285E1F3000E7827D /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D436369D285E1F3000E7827D /* BarChartView.swift */; };
 		D43636A0285E1F6000E7827D /* BarChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = D436369F285E1F6000E7827D /* BarChart.swift */; };
@@ -97,6 +98,7 @@
 		4DB1F299285DAD9200BA7465 /* FoodStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodStore.swift; sourceTree = "<group>"; };
 		4DBC6ABC286A192400E3C73E /* LicenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseView.swift; sourceTree = "<group>"; };
 		4DBC6ABE286A231200E3C73E /* apache-license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "apache-license.txt"; sourceTree = "<group>"; };
+		B5991AAE28C76A5600A14E19 /* EnterAgePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterAgePickerView.swift; sourceTree = "<group>"; };
 		D436369B285E1F2800E7827D /* BarStickView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarStickView.swift; sourceTree = "<group>"; };
 		D436369D285E1F3000E7827D /* BarChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
 		D436369F285E1F6000E7827D /* BarChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChart.swift; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				11F24707285725A000DA595B /* EnterUserDataView.swift */,
+				B5991AAE28C76A5600A14E19 /* EnterAgePickerView.swift */,
 				11F2471028572E2D00DA595B /* EnterSugarView.swift */,
 			);
 			path = EnterInfoViews;
@@ -469,6 +472,7 @@
 				D4F6CA65285E1701009D6CF8 /* viewModel.swift in Sources */,
 				11F24708285725A000DA595B /* EnterUserDataView.swift in Sources */,
 				D43636A7285E1F9B00E7827D /* PieSliceView.swift in Sources */,
+				B5991AAF28C76A5600A14E19 /* EnterAgePickerView.swift in Sources */,
 				D43636A5285E1F9600E7827D /* PieSliceData.swift in Sources */,
 				113BA153285E603E008A5594 /* SettingUserSugarView.swift in Sources */,
 				D436369E285E1F3000E7827D /* BarChartView.swift in Sources */,

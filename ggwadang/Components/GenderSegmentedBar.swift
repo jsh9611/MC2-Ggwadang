@@ -29,6 +29,10 @@ struct GenderSegmentedBar: View {
                         .background(
                             Capsule()
                                 .fill(selected == 0 ? Color(hex: 0x6CADA5) : Color.clear)
+                                .overlay(
+                                                RoundedRectangle(cornerRadius: 25)
+                                                    .stroke(Color(hex: 0x6CADA5), lineWidth: 2)
+                                        )
                         )
                 }
                 Spacer()
@@ -46,6 +50,10 @@ struct GenderSegmentedBar: View {
                         .background(
                             Capsule()
                                 .fill(selected == 1 ? Color(hex: 0x6CADA5) : Color.clear)
+                                .overlay(
+                                                RoundedRectangle(cornerRadius: 25)
+                                                    .stroke(Color(hex: 0x6CADA5), lineWidth: 2)
+                                        )
                         )
                 }
                 
