@@ -15,10 +15,12 @@ struct MainListView: View {
     
     var body: some View {
         VStack {
-            HStack {
-                Text("오늘의 당 섭취").bold()
-                Spacer()
-                NavigationLink(destination: MainFullListView()) {
+            NavigationLink(destination: MainFullListView()) {
+                HStack {
+                    Text("오늘의 당 섭취")
+                        .bold()
+                        .foregroundColor(.black)
+                    Spacer()
                     Image(systemName: "chevron.right")
                         .font(.headline)
                 }
