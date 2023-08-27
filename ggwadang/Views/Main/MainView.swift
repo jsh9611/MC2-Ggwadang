@@ -47,7 +47,7 @@ struct MainView: View {
                         .foregroundColor(.white)
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink(destination: SettingListView(naviLinkActive: $naviLinkActive), isActive: $naviLinkActive) {
+                    NavigationLink(destination: SettingListView(naviLinkActive: $naviLinkActive)) {
                         Image(systemName: "gearshape")
                             .foregroundColor(.white)
                     }

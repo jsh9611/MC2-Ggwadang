@@ -53,7 +53,7 @@ struct SegmentedPicker: View {
                 // 3. Offset from the leading edge (see below ZStack) by a computed amount
                 .offset(x: self.computeActiveSegmentHorizontalOffset(), y: 0)
                 // 4. Introduce a linear animation to show sliding between segments
-                .animation(Animation.linear(duration: SegmentedPicker.AnimationDuration))
+                .animation(Animation.linear(duration: SegmentedPicker.AnimationDuration), value: segmentSize)
                 .eraseToAnyView() // Make SwiftUI happy :) this is the same as AnyView(...)
     }
     

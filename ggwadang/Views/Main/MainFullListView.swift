@@ -14,7 +14,7 @@ struct MainFullListView: View {
     var body: some View {
         VStack{
             List {
-                if store.records.filter{ $0.date == "\(dateFormatter(date: today))" }.isEmpty {
+                if store.records.filter({ $0.date == "\(dateFormatter(date: today))" }).isEmpty {
                     Text("기록을 시작해보세요!")
                         .listRowBackground(Color.clear)
                         .frame(maxWidth: .infinity, alignment: .center)

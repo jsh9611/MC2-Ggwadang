@@ -80,7 +80,7 @@ struct BarChartView: View {
                                     number = (dataPoints[pickerSelectedItem][6])
                                 }
                         }
-                        .animation(.default)
+                        .animation(.default, value: number)
                 case 1:
                     HStack (alignment: .bottom, spacing: 20){
                             BarView(value: dataPoints[pickerSelectedItem][0], week: "1째주")
@@ -100,7 +100,7 @@ struct BarChartView: View {
                                     number = (dataPoints[pickerSelectedItem][3])
                                 }
                         }
-                        .animation(.default)
+                        .animation(.default, value: number)
                 case 2:
                     HStack (alignment: .bottom, spacing: 7){
                         Group {
@@ -154,7 +154,7 @@ struct BarChartView: View {
                                 number = dataPoints[pickerSelectedItem][0]
                             }
                         }
-                        .animation(.default)
+                        .animation(.default, value: number)
                 default:
                     EmptyView()
                 }
